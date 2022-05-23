@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import aiohttp
+import aiohttp, asyncio
 from typing import Optional, Union, Awaitable, Coroutine
 from ..enums import RequestTypes
 from .. import __version__
@@ -29,4 +29,4 @@ class BaseHTTP:
         
         async with aiohttp.ClientSession() as session:
             with session.request(str(method.name).upper(), f'https://api.fluxpoint.dev/{str(endpoint)}',headers=headers,json=json) as response:
-                return await response
+                result = await response.json(content_type="application/json")
