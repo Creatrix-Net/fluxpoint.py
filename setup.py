@@ -57,7 +57,7 @@ packages = [
 
 setup(name='fluxpoint.py',
       author='Dhruva Shaw',
-      url='https://github.com/Fates-List/async-fateslist',
+      url='https://github.com/The-4th-Hokage/fluxpoint',
       project_urls={
         "Documentation": "https://bluedocs.page/fluxpoint-api",
         "Issue tracker": "https://github.com/The-4th-Hokage/fluxpoint/issues",
