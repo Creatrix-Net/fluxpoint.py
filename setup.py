@@ -30,9 +30,9 @@ if version.endswith(('a', 'b', 'rc')):
     except Exception:
         pass
 
-readme = ''
-with open('README.md') as f:
-    readme = f.read()
+# readme = ''
+# with open('README.md') as f:
+#     readme = f.read()
 
 extras_require = {
     'speed': [
@@ -41,8 +41,11 @@ extras_require = {
         "aiohttp[speedups]>=3.8.1"
     ],
     'docs': [
-        'mkdocs>=1.2.3',
-        'mkdocs-material>=8.0.2'
+        'sphinx',
+        'sphinxcontrib_trio',
+        'sphinxcontrib-websupport',
+        # 'sphinx-autoapi==1.8.4',
+        'typing-extensions'
     ]
     
 }
@@ -52,18 +55,18 @@ packages = [
     f'{pakage_name}.paths',
 ]
 
-setup(name=pakage_name,
+setup(name='fluxpoint.py',
       author='Dhruva Shaw',
       url='https://github.com/Fates-List/async-fateslist',
       project_urls={
         "Documentation": "https://bluedocs.page/fluxpoint-api",
-        "Issue tracker": "https://github.com/Fates-List/async-fateslist/issues",
+        "Issue tracker": "https://github.com/The-4th-Hokage/fluxpoint/issues",
       },
       version=version,
       packages=packages,
       license='GNU GENERAL PUBLIC LICENSE',
       description='A Python wrapper for the Fluxpoint  API',
-      long_description=readme,
+    #   long_description=readme,
       long_description_content_type="text/x-rst",
       include_package_data=True,
       install_requires=requirements,
