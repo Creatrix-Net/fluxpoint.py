@@ -9,7 +9,7 @@ __path__ = __import__('pkgutil').extend_path(__path__, __name__)
 from typing import NamedTuple, Literal
 import logging
 
-from .requests import *
+from .http import *
 from .enums import *
 from .paths import *
 
