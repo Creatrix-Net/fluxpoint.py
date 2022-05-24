@@ -8,7 +8,7 @@ from ..http import BaseHTTP
 class NSFW(BaseHTTP):
 
     def __str__(self) -> URL:
-        return f'<Gifs>'
+        return '<Gifs>'
 
     async def azurlane_nsfw(self) -> URL:
         """

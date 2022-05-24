@@ -6,7 +6,7 @@ from ..http import BaseHTTP
 
 class Images(BaseHTTP):
     def __str__(self) -> URL:
-        return f'<Images>'
+        return '<Images>'
 
     async def neko(self) -> URL:
         """
