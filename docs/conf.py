@@ -24,7 +24,8 @@ author = 'Dhruvacube'
 # The full version, including alpha/beta/rc tags
 version = ''
 with open('../fluxpoint/__init__.py') as f:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
+    version = re.search(
+        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
 
 # The full version, including alpha/beta/rc tags.
 release = version
@@ -66,9 +67,9 @@ extlinks = {
 
 # Links used for cross-referencing stuff in other documentation
 intersphinx_mapping = {
-  'py': ('https://docs.python.org/3', None),
-  'aio': ('https://docs.aiohttp.org/en/stable/', None),
-  'yarl': ('https://yarl.readthedocs.io/en/latest/', None)
+    'py': ('https://docs.python.org/3', None),
+    'aio': ('https://docs.aiohttp.org/en/stable/', None),
+    'yarl': ('https://yarl.readthedocs.io/en/latest/', None)
 }
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -98,13 +99,13 @@ suppress_warnings = ["autoapi"]
 
 
 html_context = {
-  'discord_invite': 'https://discord.gg/fluxpoint',
+    'discord_invite': 'https://discord.gg/fluxpoint',
 }
 
 resource_links = {
-  'discord': 'https://discord.gg/fluxpoint',
-  'issues': 'https://github.com/The-4th-Hokage/fluxpoint.py/issues',
-  'discussions': 'https://github.com/The-4th-Hokage/fluxpoint.py/discussions',
+    'discord': 'https://discord.gg/fluxpoint',
+    'issues': 'https://github.com/The-4th-Hokage/fluxpoint.py/issues',
+    'discussions': 'https://github.com/The-4th-Hokage/fluxpoint.py/discussions',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -118,10 +119,10 @@ pygments_style = 'friendly'
 html_search_scorer = '_static/scorer.js'
 
 html_js_files = [
-  'custom.js',
-  'settings.js',
-  'copy.js',
-  'sidebar.js'
+    'custom.js',
+    'settings.js',
+    'copy.js',
+    'sidebar.js'
 ]
 
 man_pages = [
@@ -139,9 +140,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'fluxpoint.py', 'fluxpoint.py Documentation',
-   'Dhruvacube', 'fluxpoint.py', 'One line description of project.',
-   'Miscellaneous'),
+    ('index', 'fluxpoint.py', 'fluxpoint.py Documentation',
+     'Dhruvacube', 'fluxpoint.py', 'One line description of project.',
+     'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.
@@ -164,9 +165,12 @@ source_suffix = '.rst'
 # The master toctree document.
 master_doc = 'index'
 
+
 def autodoc_skip_member_handler(app, what, name, obj, skip, options):
-  return "__str__" in name.lower() or "__init__" in name.lower()  or "__repr__" in name.lower()
+    return "__str__" in name.lower() or "__init__" in name.lower() or "__repr__" in name.lower()
 
 # Automatically called by sphinx at startup
+
+
 def setup(app):
     app.connect('autodoc-skip-member', autodoc_skip_member_handler)
