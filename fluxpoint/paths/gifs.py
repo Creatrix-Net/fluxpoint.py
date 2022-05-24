@@ -6,7 +6,7 @@ from ..http import BaseHTTP
 
 class Gifs(BaseHTTP):
     def __str__(self) -> URL:
-        return f'<Gifs>'
+        return '<Gifs>'
 
     async def baka(self) -> URL:
         """

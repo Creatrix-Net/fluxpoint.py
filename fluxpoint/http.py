@@ -38,7 +38,7 @@ class BaseHTTP:
         self,
         method: RequestTypes,
         endpoint: str,
-        json: Optional[dict] = {},
+        json: Optional[dict] = None,
         headers: Optional[dict] = None,
         _base_url: Optional[Union[str, URL]] = 'https://api.fluxpoint.dev/',
         retry: bool = True,
@@ -46,6 +46,8 @@ class BaseHTTP:
         retry_times: int = 1
     ) -> Union[Awaitable, Coroutine, Callable, dict]:
         """Makes an API request"""
+        if json is None:
+            json = {}
         __base_url: str = _base_url if _base_url.endswith(
             '/') else _base_url.strip() + '/'
         headers = {} if not headers else headers
