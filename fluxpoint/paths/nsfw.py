@@ -36,3 +36,19 @@ class NSFW(BaseHTTP):
             )
         )['file']
     
+    async def cum_nsfw(self, gif: Optional[bool]=False) -> URL:             
+        """
+        Returns a random nsfw cum image
+
+        :param gif: If image returned should be gif image, defaults to False
+        :type gif: Optional[bool], optional
+        :return: Url of the image
+        :rtype: :class:`yarl.URL`
+        """
+        return (
+            await self.request(
+                RequestTypes.GET, 
+                '/api/nsfw/img/cum' if not gif else '/api/nsfw/gif/cum', 
+                _base_url='https://gallery.fluxpoint.dev/'
+            )
+        )['file']
