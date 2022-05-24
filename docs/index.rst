@@ -94,6 +94,5 @@ Indices and tables
 .. toctree::
   :maxdepth: 2
 
-  modules.rst
   autoapi/index.rst
 
