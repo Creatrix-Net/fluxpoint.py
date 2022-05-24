@@ -44,6 +44,7 @@ sys.path.append(os.path.abspath('extensions'))
 extensions = [
     'builder',
     'sphinx.ext.autodoc',
+    'autoapi.extension',
     'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',
@@ -54,6 +55,9 @@ extensions = [
     'resourcelinks',
     'nitpick_file_ignorer',
 ]
+autoapi_dirs = ['../fluxpoint']
+autodoc_member_order = 'bysource'
+autodoc_typehints = 'description'
 
 autodoc_member_order = 'bysource'
 autodoc_typehints = 'none'
@@ -68,7 +72,7 @@ extlinks = {
 intersphinx_mapping = {
   'py': ('https://docs.python.org/3', None),
   'aio': ('https://docs.aiohttp.org/en/stable/', None),
-  'req': ('https://docs.python-requests.org/en/latest/', None)
+  'req': ('https://requests.readthedocs.io/en/latest/', None)
 }
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
