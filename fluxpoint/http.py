@@ -14,7 +14,7 @@ class RateLimited(Exception):
     """Ratelimited expection type
     """
     __slots__ = ['status', 'retry_after', 'error', "request_obj", "retry"]
-    
+
     def __init__(self, request_obj: Optional[Union[Awaitable, Coroutine, Callable]] = None, retry: bool = False) -> None:
         super().__init__(request_obj, retry)
         self.request_obj = request_obj
@@ -59,7 +59,7 @@ class BaseHTTP:
                     if not retry:
                         raise RateLimited("Too many requests, try again later")
                     await asyncio.sleep(response.headers.get('Retry-After'))
-                    return await self.request(method, endpoint, json, headers, retry=True if retry_times <= 10 else False, retry_times=retry_times+1)
+                    return await self.request(method, endpoint, json, headers, retry=retry_times <= 10, retry_times=retry_times+1)
 
                 result = await response.json(content_type="application/json") if return_json else await response
         if response.status == 200:
