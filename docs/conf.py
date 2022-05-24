@@ -80,8 +80,6 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 html_domain_indices = True
 
-# autoapi_ignore = ['*__init__.py*']
-
 
 # -- Options for HTML output -------------------------------------------------
 
