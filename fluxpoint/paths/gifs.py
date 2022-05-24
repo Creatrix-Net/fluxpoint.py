@@ -5,9 +5,6 @@ from ..http import BaseHTTP
 
 
 class Gifs(BaseHTTP):
-    def __init__(*args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-    
     def __str__(self) -> URL:
         return f'<Gifs>'
     

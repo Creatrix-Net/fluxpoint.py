@@ -38,8 +38,8 @@ class BaseHTTP:
         self, 
         method: RequestTypes, 
         endpoint: str,
-        json: Optional[dict], 
-        headers: Optional[dict],
+        json: Optional[dict] = {}, 
+        headers: Optional[dict] = None,
         _base_url: Optional[Union[str, URL]] = 'https://api.fluxpoint.dev/',
         retry: bool = True,
         return_json: bool = True,
@@ -53,7 +53,7 @@ class BaseHTTP:
         headers["User-Agent"] = self.__user_agent
         
         async with aiohttp.ClientSession() as session:
-            with session.request(str(method.name).upper(), f'{__base_url}{str(endpoint)}',headers=headers,json=json) as response:
+            async with session.request(str(method.name).upper(), f'{__base_url}{str(endpoint)}',headers=headers,json=json) as response:
                 if response.status == 429:
                     if not retry:
                         raise RateLimited("Too many requests, try again later")
