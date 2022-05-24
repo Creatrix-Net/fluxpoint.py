@@ -31,9 +31,9 @@ if version.endswith(('a', 'b', 'rc')):
     except Exception:
         pass
 
-# readme = ''
-# with open('README.md') as f:
-#     readme = f.read()
+readme = ''
+with open('README.rst') as f:
+    readme = f.read()
 
 extras_require = {
     'speed': [
@@ -65,7 +65,7 @@ setup(name='fluxpoint.py',
       packages=packages,
       license='GNU GENERAL PUBLIC LICENSE',
       description='A Python wrapper for the Fluxpoint  API',
-      #   long_description=readme,
+      long_description=readme,
       long_description_content_type="text/x-rst",
       include_package_data=True,
       install_requires=requirements,
