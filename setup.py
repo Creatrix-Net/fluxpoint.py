@@ -36,8 +36,6 @@ if version.endswith(('a', 'b', 'rc')):
 
 extras_require = {
     'speed': [
-        'orjson>=3.5.4',
-        'uvloop==0.16.0; sys_platform != "win32"',
         "aiohttp[speedups]>=3.8.1"
     ],
     'docs': [
