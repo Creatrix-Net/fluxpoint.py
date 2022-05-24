@@ -42,11 +42,13 @@ class attributetable_item(nodes.Part, nodes.Element):
 
 def visit_attributetable_node(self: DPYHTML5Translator, node: attributetable) -> None:
     class_ = node['python-class']
-    self.body.append(f'<div class="py-attribute-table" data-move-to-id="{class_}">')
+    self.body.append(
+        f'<div class="py-attribute-table" data-move-to-id="{class_}">')
 
 
 def visit_attributetablecolumn_node(self: DPYHTML5Translator, node: attributetablecolumn) -> None:
-    self.body.append(self.starttag(node, 'div', CLASS='py-attribute-table-column'))
+    self.body.append(self.starttag(
+        node, 'div', CLASS='py-attribute-table-column'))
 
 
 def visit_attributetabletitle_node(self: DPYHTML5Translator, node: attributetabletitle) -> None:
@@ -62,7 +64,8 @@ def visit_attributetablebadge_node(self: DPYHTML5Translator, node: attributetabl
 
 
 def visit_attributetable_item_node(self: DPYHTML5Translator, node: attributetable_item) -> None:
-    self.body.append(self.starttag(node, 'li', CLASS='py-attribute-table-entry'))
+    self.body.append(self.starttag(
+        node, 'li', CLASS='py-attribute-table-entry'))
 
 
 def depart_attributetable_node(self: DPYHTML5Translator, node: attributetable) -> None:
@@ -98,7 +101,8 @@ class PyAttributeTable(SphinxDirective):
     def parse_name(self, content: str) -> Tuple[str, str]:
         match = _name_parser_regex.match(content)
         if match is None:
-            raise RuntimeError(f"content {content} somehow doesn't match regex in {self.env.docname}.")
+            raise RuntimeError(
+                f"content {content} somehow doesn't match regex in {self.env.docname}.")
         path, name = match.groups()
         if path:
             modulename = path.rstrip('.')
@@ -107,7 +111,8 @@ class PyAttributeTable(SphinxDirective):
             if not modulename:
                 modulename = self.env.ref_context.get('py:module')
         if modulename is None:
-            raise RuntimeError(f'modulename somehow None for {content} in {self.env.docname}.')
+            raise RuntimeError(
+                f'modulename somehow None for {content} in {self.env.docname}.')
 
         return modulename, name
 
@@ -191,7 +196,8 @@ def process_attributetable(app: Sphinx, doctree: nodes.Node, fromdocname: str) -
         for label, subitems in groups.items():
             if not subitems:
                 continue
-            table.append(class_results_to_node(label, sorted(subitems, key=lambda c: c.label)))
+            table.append(class_results_to_node(
+                label, sorted(subitems, key=lambda c: c.label)))
 
         table['python-class'] = fullname
 
@@ -255,7 +261,8 @@ def get_class_results(
                     badge = attributetablebadge('def', 'def')
                     badge['badge-type'] = _('method')
 
-        groups[key].append(TableElement(fullname=attrlookup, label=label, badge=badge))
+        groups[key].append(TableElement(
+            fullname=attrlookup, label=label, badge=badge))
 
     return groups
 
@@ -278,10 +285,15 @@ def class_results_to_node(key: str, elements: Sequence[TableElement]) -> attribu
 
 def setup(app: Sphinx) -> None:
     app.add_directive('attributetable', PyAttributeTable)
-    app.add_node(attributetable, html=(visit_attributetable_node, depart_attributetable_node))
-    app.add_node(attributetablecolumn, html=(visit_attributetablecolumn_node, depart_attributetablecolumn_node))
-    app.add_node(attributetabletitle, html=(visit_attributetabletitle_node, depart_attributetabletitle_node))
-    app.add_node(attributetablebadge, html=(visit_attributetablebadge_node, depart_attributetablebadge_node))
-    app.add_node(attributetable_item, html=(visit_attributetable_item_node, depart_attributetable_item_node))
+    app.add_node(attributetable, html=(
+        visit_attributetable_node, depart_attributetable_node))
+    app.add_node(attributetablecolumn, html=(
+        visit_attributetablecolumn_node, depart_attributetablecolumn_node))
+    app.add_node(attributetabletitle, html=(
+        visit_attributetabletitle_node, depart_attributetabletitle_node))
+    app.add_node(attributetablebadge, html=(
+        visit_attributetablebadge_node, depart_attributetablebadge_node))
+    app.add_node(attributetable_item, html=(
+        visit_attributetable_item_node, depart_attributetable_item_node))
     app.add_node(attributetableplaceholder)
     app.connect('doctree-resolved', process_attributetable)
