@@ -1,10 +1,16 @@
 version = 1
 
+exclude_patterns = [
+  "**/examples/**"
+]
+
 [[analyzers]]
 name = "python"
 enabled = true
 
   [analyzers.meta]
+  type_checker = "mypy"
+  max_line_length = 100
   runtime_version = "3.x.x"
 
 [[transformers]]
