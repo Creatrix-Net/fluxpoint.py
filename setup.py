@@ -44,7 +44,7 @@ extras_require = {
         'sphinx',
         'sphinxcontrib_trio',
         'sphinxcontrib-websupport',
-        # 'sphinx-autoapi==1.8.4',
+        'sphinx-autoapi',
         'typing-extensions'
     ]
     

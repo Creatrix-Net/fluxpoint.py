@@ -19,7 +19,7 @@ import sys
 
 project = 'fluxpoint.py'
 copyright = '2022, Dhruva Shaw'
-author = 'Dhruva Shaw'
+author = 'Dhruvacube'
 
 # The full version, including alpha/beta/rc tags
 version = ''
@@ -47,20 +47,16 @@ extensions = [
     'autoapi.extension',
     'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.napoleon',
+    # 'sphinx.ext.napoleon',
     'sphinxcontrib_trio',
     'details',
-    'exception_hierarchy',
     'attributetable',
     'resourcelinks',
-    'nitpick_file_ignorer',
 ]
-autoapi_dirs = ['../fluxpoint']
+autoapi_dirs = autodoc_dirs = ['../fluxpoint']
 autodoc_member_order = 'bysource'
 autodoc_typehints = 'description'
 
-autodoc_member_order = 'bysource'
-autodoc_typehints = 'none'
 # maybe consider this?
 # napoleon_attr_annotations = False
 
@@ -72,15 +68,18 @@ extlinks = {
 intersphinx_mapping = {
   'py': ('https://docs.python.org/3', None),
   'aio': ('https://docs.aiohttp.org/en/stable/', None),
-  'req': ('https://requests.readthedocs.io/en/latest/', None)
+  'yarl': ('https://yarl.readthedocs.io/en/latest/', None)
 }
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+html_domain_indices = True
+
+# autoapi_ignore = ['*__init__.py*']
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -95,12 +94,11 @@ html_experimental_html5_writer = True
 # a list of builtin themes.
 html_theme = 'basic'
 
+suppress_warnings = ["autoapi"]
+
+
 html_context = {
   'discord_invite': 'https://discord.gg/fluxpoint',
-  'discord_extensions': [
-    ('discord.ext.commands', 'ext/commands'),
-    ('discord.ext.tasks', 'ext/tasks'),
-  ],
 }
 
 resource_links = {
@@ -127,7 +125,7 @@ html_js_files = [
 ]
 
 man_pages = [
-    ('index', 'discord.py', 'discord.py Documentation',
+    ('index', 'fluxpoint.py', 'fluxpoint.py Documentation',
      ['Dhruva Shaw'], 1)
 ]
 
@@ -141,8 +139,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'discord.py', 'discord.py Documentation',
-   'Rapptz', 'discord.py', 'One line description of project.',
+  ('index', 'fluxpoint.py', 'fluxpoint.py Documentation',
+   'Dhruvacube', 'fluxpoint.py', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -156,4 +154,19 @@ texinfo_documents = [
 #texinfo_show_urls = 'footnote'
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
-#texinfo_no_detailmenu = False
+texinfo_no_detailmenu = False
+
+source_suffix = '.rst'
+
+# The encoding of source files.
+#source_encoding = 'utf-8-sig'
+
+# The master toctree document.
+master_doc = 'index'
+
+def autodoc_skip_member_handler(app, what, name, obj, skip, options):
+  return "__str__" in name.lower() or "__init__" in name.lower()  or "__repr__" in name.lower()
+
+# Automatically called by sphinx at startup
+def setup(app):
+    app.connect('autodoc-skip-member', autodoc_skip_member_handler)
