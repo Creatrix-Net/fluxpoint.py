@@ -81,7 +81,6 @@ templates_path = ['_templates']
 html_domain_indices = True
 
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
