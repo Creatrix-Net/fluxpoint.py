@@ -65,8 +65,7 @@ Quick Example
       import sys
 
       # setting up the fluxpoint client handler
-      a = FluxpointClient(
-          api_token="get api token from https://fluxpoint.dev/api/access")
+      a = FluxpointClient(api_token="get api token from https://fluxpoint.dev/api/access")
 
       # setting up the windows loop policy according to the operating system
       if sys.platform.startswith('win32') or sys.platform.startswith('cygwin'):
@@ -76,7 +75,7 @@ Quick Example
       print(asyncio.run(a.azurlane()))
 
 
-You can find more examples in the examples directory.
+You can find more examples in the `examples directory <https://github.com/The-4th-Hokage/fluxpoint.py/tree/master/examples>`_.
 
 Links
 ------
