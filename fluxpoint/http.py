@@ -14,7 +14,7 @@ class RateLimited(Exception):
     """Ratelimited expection type
     """
     __slots__ = ['status', 'retry_after', 'error', "request_obj", "retry"]
-    
+
     def __init__(self, request_obj: Optional[Union[Awaitable, Coroutine, Callable]] = None, retry: bool = False) -> None:
         super().__init__(request_obj, retry)
         self.request_obj = request_obj
