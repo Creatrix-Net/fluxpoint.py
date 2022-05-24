@@ -1,7 +1,7 @@
 __title__ = 'fluxpoint'
 __author__ = 'Dhruva Shaw'
 __license__ = 'GNU GENERAL PUBLIC LICENSE'
-__copyright__ = 'Copyright 2021-present FatesList'
+__copyright__ = 'Copyright 2021-present Dhruvacube'
 __version__ = '1.0.0a'
 __path__ = __import__('pkgutil').extend_path(__path__, __name__)
 

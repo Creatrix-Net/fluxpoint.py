@@ -4,6 +4,7 @@ import asyncio
 from typing import Awaitable, Callable, Coroutine, Optional, Union
 
 import aiohttp
+from yarl import URL
 
 from . import __version__
 from .enums import RequestTypes
@@ -14,14 +15,14 @@ class RateLimited(Exception):
     """    
     __slots__ = ['status', 'retry_after', 'error', "request_obj", "retry"]
     
-    def __init__(self, request_obj: Optional[Union[Awaitable, Coroutine, Callable]], retry: bool = False):
+    def __init__(self, request_obj: Optional[Union[Awaitable, Coroutine, Callable]], retry: bool = False) -> None:
         self.request_obj = request_obj
         self.status: int = 429
         self.retry_after: Optional[int] = None
         self.error: Optional[str] = None
         self.retry = retry
     
-    def __str__(self):
+    def __str__(self) -> str:
         return f'<RateLimited 429 ,timeout={self.retry_after}, error={self.error}>'
 
 
@@ -29,29 +30,30 @@ class RateLimited(Exception):
 class BaseHTTP:    
     __slots__ = [ "api_token"]
     
-    def __init__(self, api_token:str, _base_url: Optional[str] = 'https://api.fluxpoint.dev/'):
+    def __init__(self, api_token:str) -> None:
         self.api_token:str = api_token
         self.__user_agent:str = f"fluxpoint/{__version__}"
-        self.__base_url:str = _base_url if _base_url.endswith('/') else _base_url + '/'
         
     async def request(
         self, 
         method: RequestTypes, 
         endpoint: str,
         json: Optional[dict], 
-        headers: Optional[dict], 
+        headers: Optional[dict],
+        _base_url: Optional[Union[str, URL]] = 'https://api.fluxpoint.dev/',
         retry: bool = True,
         return_json: bool = True,
         retry_times: int = 1
     ) -> Union[Awaitable, Coroutine, Callable, dict]:
         """Makes an API request"""
+        __base_url:str = _base_url if _base_url.endswith('/') else _base_url.strip() + '/'
         headers = {} if not headers else headers
                 
         headers["Authorization"] = self.api_token
         headers["User-Agent"] = self.__user_agent
         
         async with aiohttp.ClientSession() as session:
-            with session.request(str(method.name).upper(), f'{self.__base_url}{str(endpoint)}',headers=headers,json=json) as response:
+            with session.request(str(method.name).upper(), f'{__base_url}{str(endpoint)}',headers=headers,json=json) as response:
                 if response.status == 429:
                     if not retry:
                         raise RateLimited("Too many requests, try again later")
@@ -60,5 +62,5 @@ class BaseHTTP:
                 
                 result = await response.json(content_type="application/json") if return_json else await response
         if response.status == 200:
-            return result
+            return result if return_json else await response
         raise Exception(result.text())
