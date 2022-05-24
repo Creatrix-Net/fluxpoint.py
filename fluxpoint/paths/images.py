@@ -7,7 +7,9 @@ from ..http import BaseHTTP
 
 
 class Images(BaseHTTP):
-    def __str__(self) -> Union[URL, str]:
+    """Images Api endpoints documented in https://bluedocs.page/fluxpoint-api/images"""
+
+    def __str__(self) -> str:
         return '<Images>'
 
     async def neko(self) -> Union[URL, str]:
@@ -15,7 +17,7 @@ class Images(BaseHTTP):
         Returns a random image of nekos
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, 'api/sfw/img/neko', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -24,7 +26,7 @@ class Images(BaseHTTP):
         Returns a random image of maids
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/maid', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -33,7 +35,7 @@ class Images(BaseHTTP):
         Returns a random image from nekopara
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/nekopara', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -42,7 +44,7 @@ class Images(BaseHTTP):
         Returns a random image from azurlane
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/azurlane', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -51,7 +53,7 @@ class Images(BaseHTTP):
         Returns a random image from senko
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/senko', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -60,7 +62,7 @@ class Images(BaseHTTP):
         Returns a random image from Doki Doki Literature Club
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/ddlc', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -69,7 +71,7 @@ class Images(BaseHTTP):
         Returns a random wallpaper image
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/wallpaper', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -78,7 +80,7 @@ class Images(BaseHTTP):
         Returns a random anime image
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/anime', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -87,7 +89,7 @@ class Images(BaseHTTP):
         Returns a random meme
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/meme', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -96,7 +98,7 @@ class Images(BaseHTTP):
         Returns a random No U image
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/nou', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -105,7 +107,7 @@ class Images(BaseHTTP):
         Returns a random pog meme image
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/pog', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -114,7 +116,7 @@ class Images(BaseHTTP):
         Returns a random cat image
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/cat', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -123,7 +125,7 @@ class Images(BaseHTTP):
         Returns a random dog image
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/dog', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -132,6 +134,6 @@ class Images(BaseHTTP):
         Returns a random lizard image
 
         :return: Url of the image
-        :rtype: :class: Union[`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , str]
         """
         return (await self.request(RequestTypes.GET, '/api/sfw/img/lizard', _base_url='https://gallery.fluxpoint.dev/'))['file']
