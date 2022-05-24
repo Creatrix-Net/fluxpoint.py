@@ -25,87 +25,56 @@ Installing
 
 **Python 3.8 or higher is required**
 
-To install the library without full voice support, you can just run the following command:
+To install the library, you can just run the following command:
 
 .. code:: sh
 
     # Linux/macOS
-    python3 -m pip install -U discord.py
+    python3 -m pip install -U fluxpoint.py
 
     # Windows
-    py -3 -m pip install -U discord.py
+    py -3 -m pip install -U fluxpoint.py
 
-Otherwise to get voice support you should run the following command:
+To speedup the api wrapper you should run the following command:
 
 .. code:: sh
 
     # Linux/macOS
-    python3 -m pip install -U "discord.py[voice]"
+    python3 -m pip install -U "fluxpoint.py[speed]"
 
     # Windows
-    py -3 -m pip install -U discord.py[voice]
+    py -3 -m pip install -U fluxpoint.py[speed]
 
 
 To install the development version, do the following:
 
 .. code:: sh
 
-    $ git clone https://github.com/Rapptz/discord.py
-    $ cd discord.py
-    $ python3 -m pip install -U .[voice]
+    $ git clone https://github.com/The-4th-Hokage/fluxpoint.py
+    $ cd fluxpoint.py
+    $ python3 -m pip install -U .[speed]
 
-
-Optional Packages
-~~~~~~~~~~~~~~~~~~
-
-* `PyNaCl <https://pypi.org/project/PyNaCl/>`__ (for voice support)
-
-Please note that on Linux installing voice you must install the following packages via your favourite package manager (e.g. ``apt``, ``dnf``, etc) before running the above commands:
-
-* libffi-dev (or ``libffi-devel`` on some systems)
-* python-dev (e.g. ``python3.6-dev`` for Python 3.6)
 
 Quick Example
 --------------
 
 .. code:: py
 
-    import discord
+      from fluxpoint import FluxpointClient
+      import asyncio
+      import sys
 
-    class MyClient(discord.Client):
-        async def on_ready(self):
-            print('Logged on as', self.user)
+      # setting up the fluxpoint client handler
+      a = FluxpointClient(
+          api_token="get api token from https://fluxpoint.dev/api/access")
 
-        async def on_message(self, message):
-            # don't respond to ourselves
-            if message.author == self.user:
-                return
+      # setting up the windows loop policy according to the operating system
+      if sys.platform.startswith('win32') or sys.platform.startswith('cygwin'):
+          asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-            if message.content == 'ping':
-                await message.channel.send('pong')
+      # getting the image url of AZURLANE image
+      print(asyncio.run(a.azurlane()))
 
-    intents = discord.Intents.default()
-    intents.message_content = True
-    client = MyClient(intents=intents)
-    client.run('token')
-
-Bot Example
-~~~~~~~~~~~~~
-
-.. code:: py
-
-    import discord
-    from discord.ext import commands
-
-    intents = discord.Intents.default()
-    intents.message_content = True
-    bot = commands.Bot(command_prefix='>', intents=intents)
-
-    @bot.command()
-    async def ping(ctx):
-        await ctx.send('pong')
-
-    bot.run('token')
 
 You can find more examples in the examples directory.
 
