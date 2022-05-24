@@ -17,7 +17,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw azurlane image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/azurlane', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -28,7 +28,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -45,7 +45,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -62,7 +62,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -79,7 +79,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -96,7 +96,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -113,7 +113,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -130,7 +130,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -147,7 +147,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -164,7 +164,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -181,7 +181,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -198,7 +198,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -213,7 +213,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw hentai gif
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/gif/hentai', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -222,7 +222,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw spank gif
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/gif/spank', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -233,7 +233,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -250,7 +250,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -267,7 +267,7 @@ class NSFW(BaseHTTP):
         :param gif: If image returned should be gif image, defaults to False
         :type gif: Optional[bool], optional
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (
             await self.request(
@@ -282,7 +282,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw nekopara image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/nekopara', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -291,7 +291,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw lewd image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/lewd', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -300,7 +300,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw pantyhose image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/pantyhose', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -309,7 +309,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw cosplay image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/cosplay', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -318,7 +318,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw petplay image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/petplay', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -327,7 +327,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw ahego image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/gasm', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -336,7 +336,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw ahego image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/gasm', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -345,7 +345,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw trap image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/trap', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -354,7 +354,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw anus image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/anus', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -363,7 +363,7 @@ class NSFW(BaseHTTP):
         Returns a random nsfw holo image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/holo', _base_url='https://gallery.fluxpoint.dev/'))['file']
 
@@ -372,6 +372,6 @@ class NSFW(BaseHTTP):
         Returns a random nsfw yaoi image
 
         :return: Url of the image
-        :rtype: Union[:class:`yarl.URL` , str]
+        :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
         return (await self.request(RequestTypes.GET, 'api/nsfw/img/yaoi', _base_url='https://gallery.fluxpoint.dev/'))['file']

@@ -8,7 +8,7 @@ class AboutUs:
     :type json_data: dict
 
     Acessible Parameter
-    ===========================
+    --------------------
 
     - id str
     """
