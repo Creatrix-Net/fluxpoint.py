@@ -1,6 +1,7 @@
 from ..enums import RequestTypes
 from ..http import BaseHTTP
 
+
 class AboutUs:
     """A class which gives info from the json data of about us
 
@@ -20,9 +21,11 @@ class AboutUs:
         :code: [:class:`int`] HTTP Status code
         :message: [:class:`str`] Message returned by the api
     """
-    def __init__(self, json_data: dict) -> None:     
+
+    def __init__(self, json_data: dict) -> None:
         for i in json_data:
             setattr(self, i.lower(), json_data[i])
+
 
 class Misc(BaseHTTP):
     """NSFW Api endpoints documented in https://bluedocs.page/fluxpoint-api/misc"""
@@ -35,5 +38,5 @@ class Misc(BaseHTTP):
 
         :return: The class containing all the information about the current user
         :rtype: AboutUs
-        """        
+        """
         return AboutUs(await self.request(RequestTypes.GET, 'me'))
