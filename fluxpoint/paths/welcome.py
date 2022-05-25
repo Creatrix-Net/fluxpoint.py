@@ -1,5 +1,6 @@
 from typing import List, Optional, Union
 
+from colour import Color
 from yarl import URL
 
 from ..enums import RequestTypes
@@ -15,6 +16,9 @@ class WelcomeConfig:
         members: Optional[str] = None,
         icon: Optional[str] = None,
         banner: Optional[str] = None,
+        color_welcome: Optional[Union[Color, str]] = None,
+        color_username: Optional[Union[Color, str]] = None,
+        color_members: Optional[Union[Color, str]] = None,
     ) -> None:
         self.username = username
         self.avatar = avatar
@@ -23,6 +27,10 @@ class WelcomeConfig:
 
         self.banner = banner
         self.icon = icon
+
+        self.color_members = color_members
+        self.color_username = color_username
+        self.color_welcome = color_welcome
 
 
 class Welcome(BaseHTTP):
