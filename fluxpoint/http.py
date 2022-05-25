@@ -64,8 +64,14 @@ class BaseHTTP:
                     return await self.request(method, endpoint, json, headers, retry=retry_times <= 10, retry_times=retry_times+1)
                 try:
                     result = await response.json(content_type="application/json") if return_json else await response
-                except Exception as e:
-                    raise Exception(await response.text())
+                except Exception:
+                    try:
+                        raise Exception((await response.json(content_type="application/json"))["message"])
+                    except:
+                        raise Exception(await response.text())
         if response.status == 200:
             return result if return_json else await response
-        raise Exception(await response.text())
+        try:
+            raise Exception((await response.json(content_type="application/json"))["message"])
+        except Exception as e:
+            raise Exception(await response.text())
