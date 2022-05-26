@@ -59,15 +59,15 @@ class WelcomeConfig:
 
         self.color_members = color_members
         if self.color_members is not None:
-            self.color_members = Color(self.color_members) if isinstance(
+            self.color_members = Color(self.color_members).hex if isinstance(
                 self.color_members, str) else self.color_members
         self.color_username = color_username
         if self.color_username is not None:
-            self.color_username = Color(self.color_username) if isinstance(
+            self.color_username = Color(self.color_username).hex if isinstance(
                 self.color_username, str) else self.color_username
         self.color_welcome = color_welcome
         if self.color_welcome is not None:
-            self.color_welcome = Color(self.color_welcome) if isinstance(
+            self.color_welcome = Color(self.color_welcome).hex if isinstance(
                 self.color_welcome, str) else self.color_welcome
 
     def __str__(self) -> str:
@@ -75,7 +75,7 @@ class WelcomeConfig:
 
     def to_dict(self) -> dict:
         """A helper function to convert the class parameters to a dictionary"""
-        return {
+        return_dummy_dict = {
             'username': self.username,
             'avatar': self.avatar,
             'background': self.background,
@@ -86,6 +86,11 @@ class WelcomeConfig:
             'color_username': self.color_username,
             'color_welcome': self.color_welcome,
         }
+        return_dict = {}
+        for i in return_dummy_dict:
+            if return_dummy_dict[i] is not None:
+                return_dict[i] = return_dummy_dict[i]
+        return return_dict
 
 
 class Welcome(BaseHTTP):
@@ -117,11 +122,10 @@ class Welcome(BaseHTTP):
         :return: The image as a byte array
         :rtype: Union[dict, io.IOBase]
         """
-
         if config.banner is not None:
             if config.banner.lower() not in list(map(lambda x: x.lower(), await self.welcome_banner())):
                 raise ValueError(f'Banner {config.banner} not found')
         if config.icon is not None:
             if config.icon.lower() not in list(map(lambda x: x.lower(), await self.welcome_icons())):
                 raise ValueError(f'Icon {config.icon} not found')
-        return await self.request(RequestTypes.POST, '/gen/welcome', json=config.to_dict())
+        return await self.request(RequestTypes.POST, '/gen/welcome', json=config.to_dict(), return_bytes=True, return_json=False)

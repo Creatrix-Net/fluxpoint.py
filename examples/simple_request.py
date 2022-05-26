@@ -1,6 +1,7 @@
-from fluxpoint import FluxpointClient
 import asyncio
 import sys
+
+from fluxpoint import FluxpointClient
 
 # setting up the fluxpoint client handler
 a = FluxpointClient(api_token="get api token from https://fluxpoint.dev/api/access")
