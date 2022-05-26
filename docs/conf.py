@@ -48,10 +48,9 @@ extensions = [
     'autoapi.extension',
     'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
-    # 'sphinx.ext.napoleon',
+    'sphinx.ext.napoleon',
     'sphinxcontrib_trio',
     'details',
-    'attributetable',
     'resourcelinks',
 ]
 autoapi_dirs = autodoc_dirs = ['../fluxpoint']
