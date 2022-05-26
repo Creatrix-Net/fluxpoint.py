@@ -109,7 +109,7 @@ class Welcome(BaseHTTP):
         :return: A list of all the welcome icons
         :rtype: Union[list, tuple]
         """
-        return (await self.request(RequestTypes.GET, 'list/icons')).get('list') # skipcq: TYP-005
+        return (await self.request(RequestTypes.GET, 'list/icons')).get('list')  # skipcq: TYP-005
 
     async def welcome_banner(self) -> Union[List[str], Tuple[str]]:
         """Get a list of all the welcome banners
@@ -117,9 +117,9 @@ class Welcome(BaseHTTP):
         :return: A list of all the welcome banners
         :rtype: Union[list, tuple]
         """
-        return (await self.request(RequestTypes.GET, 'list/banners')).get('list') # skipcq: TYP-005
+        return (await self.request(RequestTypes.GET, 'list/banners')).get('list')  # skipcq: TYP-005
 
-    async def welcome(self, config: WelcomeConfig) -> Union[Dict, io.IOBase]: 
+    async def welcome(self, config: WelcomeConfig) -> Union[Dict, io.IOBase]:
         """Create a welcome image
 
         :raises InvalidFeature: When ``banner`` or ``icons`` parameters in ``config`` are invalid
@@ -138,5 +138,6 @@ class Welcome(BaseHTTP):
             config.icon is not None
             and config.icon.lower() not in list(map(lambda x: x.lower(), await self.welcome_icons()))
         ):
-            raise InvalidFeature(f'Icon {config.icon} not found') 
-        return await self.request(RequestTypes.POST, '/gen/welcome', json=config.to_dict(), return_bytes=True, return_json=False) # skipcq: TYP-005
+            raise InvalidFeature(f'Icon {config.icon} not found')
+        # skipcq: TYP-005
+        return await self.request(RequestTypes.POST, '/gen/welcome', json=config.to_dict(), return_bytes=True, return_json=False)
