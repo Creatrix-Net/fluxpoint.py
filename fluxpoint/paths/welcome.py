@@ -129,10 +129,14 @@ class Welcome(BaseHTTP):
         :return: The image as a byte array
         :rtype: Union[dict, io.IOBase]
         """
-        if config.banner is not None:
-            if config.banner.lower() not in list(map(lambda x: x.lower(), await self.welcome_banner())):
-                raise InvalidFeature(f'Banner {config.banner} not found')
-        if config.icon is not None:
-            if config.icon.lower() not in list(map(lambda x: x.lower(), await self.welcome_icons())):
-                raise InvalidFeature(f'Icon {config.icon} not found') 
+        if (
+            config.banner is not None
+            and config.banner.lower() not in list(map(lambda x: x.lower(), await self.welcome_banner()))
+        ):
+            raise InvalidFeature(f'Banner {config.banner} not found')
+        if (
+            config.icon is not None
+            and config.icon.lower() not in list(map(lambda x: x.lower(), await self.welcome_icons()))
+        ):
+            raise InvalidFeature(f'Icon {config.icon} not found') 
         return await self.request(RequestTypes.POST, '/gen/welcome', json=config.to_dict(), return_bytes=True, return_json=False) # skipcq: TYP-005
