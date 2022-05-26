@@ -32,11 +32,11 @@ class WelcomeConfig:
 
         .. note::
             The ``color`` parameters are optional, if you don't want to use a color, just pass ``None``
-        
+
         .. warning::
             The ``banner`` and ``icon`` parameters evauation would be done when :func:`Welcome.welcome` is called.
-        """    
-    
+        """
+
     def __init__(
         self,
         username: str,
@@ -59,17 +59,20 @@ class WelcomeConfig:
 
         self.color_members = color_members
         if self.color_members is not None:
-            self.color_members = Color(self.color_members) if isinstance(self.color_members, str) else self.color_members
+            self.color_members = Color(self.color_members) if isinstance(
+                self.color_members, str) else self.color_members
         self.color_username = color_username
         if self.color_username is not None:
-            self.color_username = Color(self.color_username) if isinstance(self.color_username, str) else self.color_username
+            self.color_username = Color(self.color_username) if isinstance(
+                self.color_username, str) else self.color_username
         self.color_welcome = color_welcome
         if self.color_welcome is not None:
-            self.color_welcome = Color(self.color_welcome) if isinstance(self.color_welcome, str) else self.color_welcome
-    
+            self.color_welcome = Color(self.color_welcome) if isinstance(
+                self.color_welcome, str) else self.color_welcome
+
     def __str__(self) -> str:
         return f'<WelcomeConfig username={self.username} avatar={self.avatar} background={self.background}>'
-    
+
     def to_dict(self) -> dict:
         """A helper function to convert the class parameters to a dictionary"""
         return {
@@ -103,7 +106,7 @@ class Welcome(BaseHTTP):
         :rtype: Union[list, tuple]
         """
         return (await self.request(RequestTypes.GET, 'list/banners')).get('list')
-    
+
     async def welcome(self, config: WelcomeConfig) -> Union[Dict, io.IOBase]:
         """Create a welcome image
 
