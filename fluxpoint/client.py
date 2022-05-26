@@ -1,6 +1,5 @@
 from .paths import Gifs, Images, NSFW, Misc
 
-
 class FluxpointClient(Gifs, Images, NSFW, Misc):
     '''The fluxpoint client where all the api routes are located'''
 
