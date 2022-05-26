@@ -51,7 +51,7 @@ extras_require = {
 
 packages = [
     pakage_name,
-    f'{pakage_name}.paths',
+    f'{pakage_name}.paths'
 ]
 
 setup(

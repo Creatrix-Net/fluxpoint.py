@@ -13,6 +13,9 @@ Welcome to fluxpoint's documentation!
 
 A modern, easy to use, feature-rich, and async ready API wrapper for Fluxpoint written in Python.
 
+.. image:: /_static/fluxpoint.png
+
+
 Key Features
 -------------
 

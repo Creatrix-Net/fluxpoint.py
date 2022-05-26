@@ -114,6 +114,7 @@ exclude_patterns = ['_build']
 pygments_style = 'friendly'
 
 html_search_scorer = '_static/scorer.js'
+html_favicon = './_static/favicon.ico'
 
 html_js_files = [
     'custom.js',
@@ -128,7 +129,7 @@ man_pages = [
 ]
 
 # If true, show URL addresses after external links.
-#man_show_urls = False
+man_show_urls = True
 
 
 # -- Options for Texinfo output -------------------------------------------

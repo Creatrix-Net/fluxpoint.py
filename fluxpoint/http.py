@@ -1,29 +1,13 @@
 import asyncio
 import io
-from typing import Awaitable, Callable, Coroutine, Optional, Union
+from typing import Optional, Union
 
 import aiohttp
 from yarl import URL
 
 from . import __version__
 from .enums import RequestTypes
-
-
-class RateLimited(Exception):
-    """Ratelimited expection type
-    """
-    __slots__ = ['status', 'retry_after', 'error', "request_obj", "retry"]
-
-    def __init__(self, request_obj: Optional[Union[Awaitable, Coroutine, Callable]] = None, retry: bool = False) -> None:
-        super().__init__(request_obj, retry)
-        self.request_obj = request_obj
-        self.status: int = 429
-        self.retry_after: Optional[int] = None
-        self.error: Optional[str] = None
-        self.retry = retry
-
-    def __str__(self) -> str:
-        return f'<RateLimited 429 ,timeout={self.retry_after}, error={self.error}>'
+from .errors import *
 
 
 class BaseHTTP:
@@ -44,7 +28,7 @@ class BaseHTTP:
         return_json: bool = True,
         return_bytes: bool = False,
         retry_times: int = 1
-    ) -> Union[Awaitable, Coroutine, Callable, dict, io.IOBase]:
+    ) -> Union[aiohttp.ClientResponse, dict, io.IOBase]:
         """Makes an API request"""
         if json is None:
             json = {}
@@ -62,16 +46,23 @@ class BaseHTTP:
                         raise RateLimited("Too many requests, try again later")
                     await asyncio.sleep(response.headers.get('Retry-After'))
                     return await self.request(method, endpoint, json, headers, retry=retry_times <= 10, retry_times=retry_times+1)
-                try:
-                    result = await response.json(content_type="application/json") if return_json else (await response.read()if return_bytes else response)
-                except Exception:
-                    try:
-                        raise Exception((await response.json(content_type="application/json"))["message"])
-                    except:
-                        raise Exception(await response.text())
+                
                 if response.status == 200:
+                    try:
+                        result = await response.json(content_type="application/json") if return_json else (await response.read()if return_bytes else response)
+                    except UnicodeDecodeError:
+                        raise WrongReturnType("Wrong return type is given")
                     return result
-                try:
-                    raise Exception((await response.json(content_type="application/json"))["message"])
-                except Exception as e:
-                    raise Exception(await response.text())
+                
+                result = await response.json()
+                if response.status == 400:
+                    raise ParameterError(result["message"])
+                
+                if response.status == 401:
+                    raise Unauthorised(result["message"])
+                
+                if response.status == 500:
+                    raise ApiError(result["message"])
+                
+                raise HttpException(response.status, result)
+

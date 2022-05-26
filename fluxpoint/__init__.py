@@ -12,6 +12,7 @@ from .http import *
 from .enums import *
 from .paths import *
 from .client import *
+from .errors import *
 
 
 class VersionInfo(NamedTuple):

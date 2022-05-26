@@ -8,6 +8,13 @@ from ..enums import RequestTypes
 from ..http import BaseHTTP
 
 
+class InvalidFeature(Exception):
+    """
+    The feature chosen is not valid
+    """
+    pass
+
+
 class WelcomeConfig:
     """Class to configure the welcome image parameters
 
@@ -115,7 +122,7 @@ class Welcome(BaseHTTP):
     async def welcome(self, config: WelcomeConfig) -> Union[Dict, io.IOBase]:
         """Create a welcome image
 
-        :raises ValueError: When ``banner`` or ``icons`` parameters in ``config`` are invalid
+        :raises InvalidFeature: When ``banner`` or ``icons`` parameters in ``config`` are invalid
 
         :param config: A WelcomeConfig object
         :type config: WelcomeConfig
@@ -124,8 +131,8 @@ class Welcome(BaseHTTP):
         """
         if config.banner is not None:
             if config.banner.lower() not in list(map(lambda x: x.lower(), await self.welcome_banner())):
-                raise ValueError(f'Banner {config.banner} not found')
+                raise InvalidFeature(f'Banner {config.banner} not found')
         if config.icon is not None:
             if config.icon.lower() not in list(map(lambda x: x.lower(), await self.welcome_icons())):
-                raise ValueError(f'Icon {config.icon} not found')
-        return await self.request(RequestTypes.POST, '/gen/welcome', json=config.to_dict(), return_bytes=True, return_json=False)
+                raise InvalidFeature(f'Icon {config.icon} not found')
+        return await self.request(RequestTypes.POST, '/gen/welcome', json=config.to_dict(), return_bytes=False, return_json=True)
