@@ -129,6 +129,7 @@ class Welcome(BaseHTTP):
         :return: The image as a byte array
         :rtype: Union[dict, io.IOBase]
         """
+
         if (
             config.banner is not None
             and config.banner.lower() not in list(map(lambda x: x.lower(), await self.welcome_banner()))
