@@ -14,13 +14,13 @@ class Triangle:
         :type cut: Literal[topleft, topright, bottomleft, bottomright]
 
         :raises OverflowError: When ``width`` or ``height`` is greater than 100 or less than 1
-    """    
-    
+    """
+
     def __init__(
-        self, 
-        color: str, 
-        width: int, 
-        height: int, 
+        self,
+        color: str,
+        width: int,
+        height: int,
         cut: Literal['topleft', 'topright', 'bottomleft', 'bottomright']
     ) -> None:
         self.color = color
@@ -31,7 +31,7 @@ class Triangle:
             raise OverflowError("Height must be lesser than 20")
         self.height = height
         self.cut = cut
-    
+
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
         return {
@@ -52,13 +52,14 @@ class Circle:
         :type radius: int
 
         :raises OverflowError: When ``radius`` is greater than 20 or less than 1
-    """       
+    """
+
     def __init__(self, color: str, radius: int) -> None:
         self.color = color
         if radius > 20 or radius < 1:
             raise OverflowError("Radius must be lesser than 20")
         self.radius = radius
-    
+
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
         return {
