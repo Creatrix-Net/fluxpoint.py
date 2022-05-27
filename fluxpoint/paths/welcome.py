@@ -1,7 +1,6 @@
 from typing import List, Optional, Union, Dict, Tuple
 import io
 
-from colour import Color
 from yarl import URL
 
 from ..enums import RequestTypes
@@ -31,11 +30,11 @@ class WelcomeConfig:
         :param banner: Banner to be put at background, defaults to None
         :type banner: Optional[str], optional
         :param color_welcome: Colour of the welcome text, defaults to None
-        :type color_welcome: Optional[Union[Color, str]], optional
+        :type color_welcome: Optional[str], optional
         :param color_username: Colour of the username text, defaults to None
-        :type color_username: Optional[Union[Color, str]], optional
+        :type color_username: Optional[str], optional
         :param color_members: Colour of the member text, defaults to None
-        :type color_members: Optional[Union[Color, str]], optional
+        :type color_members: Optional[str], optional
 
         .. note::
             The ``color`` parameters are optional, if you don't want to use a color, just pass ``None``
@@ -52,9 +51,9 @@ class WelcomeConfig:
         members: Optional[str] = None,
         icon: Optional[str] = None,
         banner: Optional[str] = None,
-        color_welcome: Optional[Union[Color, str]] = None,
-        color_username: Optional[Union[Color, str]] = None,
-        color_members: Optional[Union[Color, str]] = None,
+        color_welcome: Optional[str] = None,
+        color_username: Optional[str] = None,
+        color_members: Optional[str] = None,
     ) -> None:
         self.username = username
         self.avatar = avatar
@@ -65,17 +64,8 @@ class WelcomeConfig:
         self.icon = icon
 
         self.color_members = color_members
-        if self.color_members is not None:
-            self.color_members = Color(self.color_members).hex if isinstance(
-                self.color_members, str) else self.color_members
         self.color_username = color_username
-        if self.color_username is not None:
-            self.color_username = Color(self.color_username).hex if isinstance(
-                self.color_username, str) else self.color_username
         self.color_welcome = color_welcome
-        if self.color_welcome is not None:
-            self.color_welcome = Color(self.color_welcome).hex if isinstance(
-                self.color_welcome, str) else self.color_welcome
 
     def __str__(self) -> str:
         return f'<WelcomeConfig username={self.username} avatar={self.avatar} background={self.background}>'
