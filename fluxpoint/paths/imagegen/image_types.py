@@ -12,17 +12,17 @@ class Square:
         :type color: Optional[str], optional
         :param round:  Make the borders of the shape round. (Default 0), defaults to None
         :type round: Optional[int], optional
-        
+
         :raises OverflowError: When ``width`` or ``height`` is greater than 100 or less than 1
     """
-    
+
     def __init__(
         self,
         width: int,
         height: int,
         color: Optional[str] = None,
         round: Optional[int] = None
-    ) -> None:   
+    ) -> None:
         if self.color is None:
             self.color = color
         if width > 100 or width < 1:
@@ -35,7 +35,7 @@ class Square:
             if round > 60 or round < 1:
                 raise OverflowError("Round value must be lesser than 60")
             self.round = round
-    
+
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
         return_dict = {'type': 'bitmap'}
