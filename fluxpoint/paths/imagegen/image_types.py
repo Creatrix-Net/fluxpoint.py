@@ -134,12 +134,13 @@ class ImageUrl:
         :type maxheight: Optional[int], optional
         :param round: Make the borders of the image round for stuff like circle avatars, defaults to None
         :type round: Optional[int], optional
-        
+
         :raises OverflowError: When ``width``, ``height``, ``maxwidth``or ``maxheight` is greater than 100 or less than 1
         :raises OverflowError: When ``round`` is greater than 60 or less than 1
-    """   
+    """
 
-    __slots__ = ["url", "cache", "width", "height", "maxwidth", "maxheight", "round"]
+    __slots__ = ["url", "cache", "width",
+                 "height", "maxwidth", "maxheight", "round"]
 
     def __init__(
         self,
@@ -147,10 +148,10 @@ class ImageUrl:
         cache: Optional[bool] = False,
         width: Optional[int] = None,
         height: Optional[int] = None,
-        maxwidth: Optional[int] = None, 
-        maxheight: Optional[int] = None, 
+        maxwidth: Optional[int] = None,
+        maxheight: Optional[int] = None,
         round: Optional[int] = None
-    ) -> None: 
+    ) -> None:
         self.url = url
         self.cache = cache
         if width is not None:
@@ -173,7 +174,6 @@ class ImageUrl:
             if round > 60 or round < 1:
                 raise OverflowError("Round value must be lesser than 60")
             self.round = round
-
 
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
