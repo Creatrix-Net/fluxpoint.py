@@ -44,7 +44,7 @@ class BaseHTTP:
         :raises HttpException: For the other and generall http exceptions
         :return: Bytes data for the image
         :rtype: Union[aiohttp.ClientResponse, dict, io.IOBase]
-        """        
+        """
         if json is None:
             json = {}
         __base_url: str = _base_url if _base_url.endswith(
