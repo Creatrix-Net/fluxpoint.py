@@ -11,14 +11,14 @@ from .errors import *
 
 
 class BaseHTTP:
+    """The base class for making http requests
+
+    :param api_token: The fluxpoint api token https://fluxpoint.dev/api/access
+    :type api_token: str
+    """
     __slots__ = ["api_token"]
 
     def __init__(self, api_token: str) -> None:
-        """The base class for making http requests
-
-        :param api_token: The fluxpoint api token https://fluxpoint.dev/api/access
-        :type api_token: str
-        """
         self.api_token: str = api_token
         self.__user_agent: str = f"fluxpoint/{__version__}"
 
@@ -34,7 +34,17 @@ class BaseHTTP:
         return_bytes: bool = False,
         retry_times: int = 1
     ) -> Union[aiohttp.ClientResponse, dict, io.IOBase]:
-        """Makes an API request"""
+        """Makes an API request
+
+        :raises RateLimited: When the 429 response is returned
+        :raises WrongReturnType: When the :exc:`UnicodeDecodeError` is raised
+        :raises ParameterError: When the 400 response is returned
+        :raises Unauthorised: When the 401 response is returned
+        :raises ApiError: When the 500 response is returned
+        :raises HttpException: For the other and generall http exceptions
+        :return: Bytes data for the image
+        :rtype: Union[aiohttp.ClientResponse, dict, io.IOBase]
+        """        
         if json is None:
             json = {}
         __base_url: str = _base_url if _base_url.endswith(
