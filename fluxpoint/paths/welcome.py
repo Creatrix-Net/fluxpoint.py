@@ -11,7 +11,6 @@ class InvalidFeature(Exception):
     """
     The feature chosen is not valid
     """
-    pass
 
 
 class WelcomeConfig:

@@ -3,6 +3,7 @@ import io
 from ..http import BaseHTTP
 from ..enums import RequestTypes
 
+
 class Square:
     """Square Image class
 
@@ -214,19 +215,19 @@ class Text:
 
         :param outlineblur: Make the outline transparency less visible for a cool effect, defaults to 1
         :type outlineblur: Optional[int], optional
-    """  
+    """
     __slots__ = [
         "text",
         "size",
         "font",
-        "color", 
-        "back", 
-        "x", 
-        "y", 
-        "align", 
-        "bold", 
-        "italics", 
-        "underline", 
+        "color",
+        "back",
+        "x",
+        "y",
+        "align",
+        "bold",
+        "italics",
+        "underline",
         "line",
         "weight",
         "width",
@@ -238,17 +239,17 @@ class Text:
     ]
 
     def __init__(
-        self, 
-        text: str, 
+        self,
+        text: str,
         size: Optional[int] = 16,
         font: Optional[str] = "Sans Serif",
         color: Optional[str] = "white",
         back: Optional[str] = None,
         x: Optional[int] = 0,
         y: Optional[int] = 0,
-        align: Optional[Literal["l","m","r"]] = "l",
+        align: Optional[Literal["l", "m", "r"]] = "l",
         bold: Optional[bool] = False,
-        italics: Optional[bool] = False, 
+        italics: Optional[bool] = False,
         underline: Optional[bool] = False,
         line: Optional[float] = 1.0,
         weight: Optional[int] = 500,
@@ -258,7 +259,7 @@ class Text:
         outlinewidth: Optional[int] = 9,
         outlinecolor: Optional[str] = "black",
         outlineblur: Optional[int] = 1,
-    ) -> None:  
+    ) -> None:
         self.text = text
         self.size = size
         self.font = font
@@ -281,7 +282,7 @@ class Text:
         self.outlinewidth = outlinewidth
         self.outlinecolor = outlinecolor
         self.outlineblur = outlineblur
-    
+
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
         return_dict = {}
@@ -296,7 +297,7 @@ class ImageGenerator(BaseHTTP):
 
     def __str__(self):
         return "<Image Generator>"
-    
+
     async def test(self) -> Union[Dict, io.IOBase]:
         """Test the image generator
 
