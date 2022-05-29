@@ -304,4 +304,4 @@ class ImageGenerator(BaseHTTP):
         :returns: The response from the server
         :rtype: Union[Dict, io.IOBase]
         """
-        return await self.request(RequestTypes.GET, '/test/image', return_bytes=True, return_json=False) #TYP-005
+        return await self.request(RequestTypes.GET, '/test/image', return_bytes=True, return_json=False)  # TYP-005
