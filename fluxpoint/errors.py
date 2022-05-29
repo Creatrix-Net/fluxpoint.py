@@ -1,6 +1,6 @@
 class HttpException(Exception):
     """
-    AsyncDagpi base exception class use this base class to catch any AsyncDagpi errors.
+    Fluxpoint base exception class use this base class to catch any Fluxpoint errors.
     """
 
     def __init__(self, status: int, message: str) -> None:
