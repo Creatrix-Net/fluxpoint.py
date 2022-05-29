@@ -18,7 +18,7 @@ class BaseHTTP:
 
         :param api_token: The fluxpoint api token https://fluxpoint.dev/api/access
         :type api_token: str
-        """        
+        """
         self.api_token: str = api_token
         self.__user_agent: str = f"fluxpoint/{__version__}"
 
