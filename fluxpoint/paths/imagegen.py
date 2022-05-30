@@ -1,4 +1,4 @@
-from typing import Literal, Optional, Dict, Union
+from typing import Literal, Optional, Dict, Union, List
 import io
 from ..http import BaseHTTP
 from ..enums import RequestTypes
@@ -15,21 +15,32 @@ class Square:
         :type color: Optional[str], optional
         :param round:  Make the borders of the shape round. (Default 0), defaults to None
         :type round: Optional[int], optional
+        :param x: Position the image in pixels, defaults to None
+        :type x: Optional[int], optional
+        :param y: Position the image in pixels, defaults to None
+        :type y: Optional[int], optional
     """
+    __slots__ = ["width", "height", "color", "round", "x", "y"]
 
     def __init__(
         self,
         width: int,
         height: int,
         color: Optional[str] = None,
-        round: Optional[int] = None
+        round: Optional[int] = None,
+        x: Optional[int] = None,
+        y: Optional[int] = None
     ) -> None:
-        if self.color is None:
+        if color is None:
             self.color = color
         self.width = width
         self.height = height
         if round is not None:
             self.round = round
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
 
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
@@ -51,22 +62,32 @@ class Triangle:
         :type height: int
         :param cut: Choose where the missing peice of the triangle is
         :type cut: Literal[topleft, topright, bottomleft, bottomright]
+        :param x: Position the image in pixels, defaults to None
+        :type x: Optional[int], optional
+        :param y: Position the image in pixels, defaults to None
+        :type y: Optional[int], optional
     """
 
-    __slots__ = ["width", "height", "cut", "color"]
+    __slots__ = ["width", "height", "cut", "color", "x", "y"]
 
     def __init__(
         self,
         width: int,
         height: int,
         cut: Literal['topleft', 'topright', 'bottomleft', 'bottomright'],
-        color: Optional[str] = None
+        color: Optional[str] = None,
+        x: Optional[int] = None,
+        y: Optional[int] = None
     ) -> None:
         if color is not None:
             self.color = color
         self.width = width
         self.height = height
         self.cut = cut
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
 
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
@@ -84,14 +105,22 @@ class Circle:
         :type color: Optional[str]
         :param radius: Set the size of the circle from the center point
         :type radius: Optional[int]
+        :param x: Position the image in pixels, defaults to None
+        :type x: Optional[int], optional
+        :param y: Position the image in pixels, defaults to None
+        :type y: Optional[int], optional
     """
-    __slots__ = ["color", "radius"]
+    __slots__ = ["color", "radius", "x", "y"]
 
-    def __init__(self, color: Optional[str] = None, radius: Optional[int] = None) -> None:
+    def __init__(self, color: Optional[str] = None, radius: Optional[int] = None, x: Optional[int] = None, y: Optional[int] = None) -> None:
         if color is not None:
             self.color = color
         if radius is not None:
             self.radius = radius
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
 
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
@@ -119,10 +148,13 @@ class ImageUrl:
         :type maxheight: Optional[int], optional
         :param round: Make the borders of the image round for stuff like circle avatars, defaults to None
         :type round: Optional[int], optional
+        :param x: Position the image in pixels, defaults to None
+        :type x: Optional[int], optional
+        :param y: Position the image in pixels, defaults to None
+        :type y: Optional[int], optional
     """
 
-    __slots__ = ["url", "cache", "width",
-                 "height", "maxwidth", "maxheight", "round"]
+    __slots__ = ["url", "cache", "width", "height", "maxwidth", "maxheight", "round"]
 
     def __init__(
         self,
@@ -132,7 +164,9 @@ class ImageUrl:
         height: Optional[int] = None,
         maxwidth: Optional[int] = None,
         maxheight: Optional[int] = None,
-        round: Optional[int] = None
+        round: Optional[int] = None,
+        x: Optional[int] = None,
+        y: Optional[int] = None
     ) -> None:
         self.url = url
         self.cache = cache
@@ -146,6 +180,10 @@ class ImageUrl:
             self.maxheight = maxheight
         if round is not None:
             self.round = round
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
 
     def to_dict(self) -> dict:
         """Converts the class to a dictionary"""
@@ -305,3 +343,42 @@ class ImageGenerator(BaseHTTP):
         :rtype: Union[Dict, io.IOBase]
         """
         return await self.request(RequestTypes.GET, '/test/image', return_bytes=True, return_json=False)  # skipcq: TYP-005
+    
+    async def customimage(
+        self, 
+        type: Literal["bitmap", "image"], 
+        width: int,
+        height: int,
+        color: str,
+        images: Optional[List[Union[ImageUrl, Square, Triangle, Circle]]] = [],
+        texts: Optional[List[Text]] = []
+    ) -> Union[Dict, io.IOBase]:
+        """Get the created image gen image.
+
+        :param type: Image type
+        :type type: Literal[bitmap, image]
+        :param width: Overall width of the image
+        :type width: int
+        :param height: Overall height of the image
+        :type height: int
+        :param color: Background colour of the image
+        :type color: str
+        :param images: The image(s) that you want to embed in image, defaults to []
+        :type images: Optional[List[Union[ImageUrl, Square, Triangle, Circle]]], optional
+        :param texts: The text(s) that you want to embed in image, defaults to []
+        :type texts: Optional[List[Text]], optional
+        
+        :return: The custom generated image bytes data
+        :rtype: Union[Dict, io.IOBase]
+        """        
+        json_data = {
+            "Base":{
+                "type":type,
+                "width": width,
+                "height": height,
+                "color":color
+            },
+            "Images": list(map(lambda x: x.to_dict(), images)),
+            "Texts": list(map(lambda x: x.to_dict(), texts))
+        }
+        return await self.request(RequestTypes.POST, '/gen/custom', return_bytes=True, return_json=False, json=json_data)
