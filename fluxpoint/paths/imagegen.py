@@ -382,4 +382,5 @@ class ImageGenerator(BaseHTTP):
             "Images": list(map(lambda x: x.to_dict(), images)),
             "Texts": list(map(lambda x: x.to_dict(), texts))
         }
-        return await self.request(RequestTypes.POST, '/gen/custom', return_bytes=True, return_json=False, json=json_data) # skipcq : TYP-005
+        # skipcq : TYP-005
+        return await self.request(RequestTypes.POST, '/gen/custom', return_bytes=True, return_json=False, json=json_data)
