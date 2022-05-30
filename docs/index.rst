@@ -85,6 +85,8 @@ Links
 
 - `Official Support Discord Server <https://discord.gg/vfXHwS3nmQ>`_
 - `Official Fluxpoint server <https://discord.gg/fluxpoint>`_
+- `Get Fluxpoint api access <https://fluxpoint.dev/api/access>`_
+- `Official Fluxpoint api docs <https://bluedocs.page/fluxpoint-api>`_
 
 
 
