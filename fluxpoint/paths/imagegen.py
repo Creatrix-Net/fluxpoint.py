@@ -351,8 +351,8 @@ class ImageGenerator(BaseHTTP):
         width: int,
         height: int,
         color: str,
-        images: Optional[List[Union[ImageUrl, Square, Triangle, Circle]]] = [],
-        texts: Optional[List[Text]] = []
+        images: Optional[List[Union[ImageUrl, Square, Triangle, Circle]]] = None,
+        texts: Optional[List[Text]] = None
     ) -> Union[Dict, io.IOBase]:
         """Get the created image gen image.
 
@@ -372,6 +372,10 @@ class ImageGenerator(BaseHTTP):
         :return: The custom generated image bytes data
         :rtype: Union[Dict, io.IOBase]
         """
+        if images is None:
+            images = []
+        if texts is None:
+            texts = []
         json_data = {
             "Base": {
                 "type": type,
