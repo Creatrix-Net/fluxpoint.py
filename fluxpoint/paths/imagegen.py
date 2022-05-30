@@ -351,7 +351,8 @@ class ImageGenerator(BaseHTTP):
         width: int,
         height: int,
         color: str,
-        images: Optional[List[Union[ImageUrl, Square, Triangle, Circle]]] = None,
+        images: Optional[List[Union[ImageUrl,
+                                    Square, Triangle, Circle]]] = None,
         texts: Optional[List[Text]] = None
     ) -> Union[Dict, io.IOBase]:
         """Get the created image gen image.
@@ -386,4 +387,5 @@ class ImageGenerator(BaseHTTP):
             "Images": list(map(lambda x: x.to_dict(), images)),
             "Texts": list(map(lambda x: x.to_dict(), texts))
         }
-        return await self.request(RequestTypes.POST, '/gen/custom', return_bytes=True, return_json=False, json=json_data) # skipcq : TYP-005
+        # skipcq : TYP-005
+        return await self.request(RequestTypes.POST, '/gen/custom', return_bytes=True, return_json=False, json=json_data)
