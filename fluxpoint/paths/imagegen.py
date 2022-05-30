@@ -154,7 +154,8 @@ class ImageUrl:
         :type y: Optional[int], optional
     """
 
-    __slots__ = ["url", "cache", "width", "height", "maxwidth", "maxheight", "round"]
+    __slots__ = ["url", "cache", "width",
+                 "height", "maxwidth", "maxheight", "round"]
 
     def __init__(
         self,
@@ -343,10 +344,10 @@ class ImageGenerator(BaseHTTP):
         :rtype: Union[Dict, io.IOBase]
         """
         return await self.request(RequestTypes.GET, '/test/image', return_bytes=True, return_json=False)  # skipcq: TYP-005
-    
+
     async def customimage(
-        self, 
-        type: Literal["bitmap", "image"], 
+        self,
+        type: Literal["bitmap", "image"],
         width: int,
         height: int,
         color: str,
@@ -367,16 +368,16 @@ class ImageGenerator(BaseHTTP):
         :type images: Optional[List[Union[ImageUrl, Square, Triangle, Circle]]], optional
         :param texts: The text(s) that you want to embed in image, defaults to []
         :type texts: Optional[List[Text]], optional
-        
+
         :return: The custom generated image bytes data
         :rtype: Union[Dict, io.IOBase]
-        """        
+        """
         json_data = {
-            "Base":{
-                "type":type,
+            "Base": {
+                "type": type,
                 "width": width,
                 "height": height,
-                "color":color
+                "color": color
             },
             "Images": list(map(lambda x: x.to_dict(), images)),
             "Texts": list(map(lambda x: x.to_dict(), texts))
