@@ -64,7 +64,7 @@ setup(
         "Repository": "https://github.com/Dhruvacube/fluxpoint.py",
         "Get Api Token": "https://fluxpoint.dev/api/access",
         "Offcial Fluxpoint discord server": "https://discord.gg/fluxpoint",
-        "Support server for the api wrapper": "https://discord.gg/vfXHwS3nmQ",
+        "Support server for api wrapper": "https://discord.gg/vfXHwS3nmQ",
         "Examples Directory": "https://github.com/Dhruvacube/fluxpoint.py/tree/master/examples",
         "fluxpoint.py API Wrapper documentation": "https://fluxpointpy.readthedocs.io"
     },
