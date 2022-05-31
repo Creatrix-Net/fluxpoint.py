@@ -85,4 +85,4 @@ class Misc(BaseHTTP):
         :param port: The port of the server
         :type port: int
         """
-        return MinecraftPingData(await self.request(RequestTypes.GET, f'mc/ping?host={host}&{port}')) # skipcq: FLK-E50
+        return MinecraftPingData(await self.request(RequestTypes.GET, f'mc/ping?host={host}&{port}'))  # skipcq: FLK-E50
