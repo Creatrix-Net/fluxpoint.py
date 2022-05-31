@@ -27,7 +27,7 @@ class AboutUs:
     def __init__(self, json_data: dict) -> None:
         for i in json_data:
             setattr(self, i.lower(), json_data[i])
-    
+
     def __str__(self) -> str:
         return f"<AboutUs {self.name} ({self.id})>"
 
@@ -55,13 +55,12 @@ class MinecraftPingData:
     def __init__(self, json_data: dict) -> None:
         for i in json_data:
             setattr(self, i.lower(), json_data[i])
-    
+
     def __str__(self) -> str:
         return '<Minecraft Server Ping Data>'
-    
+
     def __repr__(self) -> str:
         return '<Minecraft Server Ping Data>'
-
 
 
 class Misc(BaseHTTP):
@@ -77,7 +76,7 @@ class Misc(BaseHTTP):
         :rtype: AboutUs
         """
         return AboutUs(await self.request(RequestTypes.GET, 'me'))
-    
+
     async def mc_ping(self, host: str, port: Optional[int] = 25565) -> MinecraftPingData:
         """Ping a minecraft server
 
