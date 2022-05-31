@@ -1,5 +1,5 @@
 fluxpoint.py
-==========
+================
 
 .. image:: https://discord.com/api/guilds/920190307595874304/embed.png
    :target: https://discord.gg/r3sSKJJ
@@ -14,7 +14,7 @@ fluxpoint.py
 A modern, easy to use, feature-rich, and async ready API wrapper for Fluxpoint written in Python.
 
 Key Features
--------------
+--------------
 
 - Modern Pythonic API using ``async`` and ``await``.
 - Proper rate limit handling.
@@ -56,7 +56,7 @@ To install the development version, do the following:
 
 
 Quick Example
---------------
+---------------
 
 .. code:: py
 
