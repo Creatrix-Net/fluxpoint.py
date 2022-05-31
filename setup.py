@@ -81,7 +81,7 @@ setup(
     package_data={"fluxpoint": ["py.typed"]},
     python_requires='>=3.8',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
         'Intended Audience :: Developers',
         'Natural Language :: English',
