@@ -59,14 +59,15 @@ setup(
     author='Dhruva Shaw',
     url='https://github.com/Dhruvacube/fluxpoint.py',
     project_urls={
-        "Official Api Documentation": "https://bluedocs.page/fluxpoint-api",
-        "Issue tracker": "https://github.com/Dhruvacube/fluxpoint.py/issues",
-        "Repository": "https://github.com/Dhruvacube/fluxpoint.py",
+        "fluxpoint.py API wrapper Docs": "https://fluxpointpy.readthedocs.io",
+        "Official Api Docs": "https://bluedocs.page/fluxpoint-api",
         "Get Api Token": "https://fluxpoint.dev/api/access",
         "Offcial Fluxpoint discord server": "https://discord.gg/fluxpoint",
         "Support server for api wrapper": "https://discord.gg/vfXHwS3nmQ",
+
+        "Repository": "https://github.com/Dhruvacube/fluxpoint.py",
         "Examples Directory": "https://github.com/Dhruvacube/fluxpoint.py/tree/master/examples",
-        "fluxpoint.py API wrapper docs": "https://fluxpointpy.readthedocs.io"
+        "Issue tracker": "https://github.com/Dhruvacube/fluxpoint.py/issues",
     },
     version=version,
     packages=packages,
