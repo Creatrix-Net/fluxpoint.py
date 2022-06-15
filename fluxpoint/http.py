@@ -62,21 +62,21 @@ class BaseHTTP:
                     await asyncio.sleep(response.headers.get('Retry-After'))
                     return await self.request(method, endpoint, json, headers, retry=retry_times <= 10, retry_times=retry_times+1)
 
-                if response.status == 200:
-                    try:
-                        result = await response.json(content_type="application/json") if return_json else (await response.read()if return_bytes else response)
-                    except UnicodeDecodeError:
-                        raise WrongReturnType("Wrong return type is given")
-                    return result
+                try:
+                    result = await response.json(content_type="application/json") if return_json else (await response.read()if return_bytes else response)
+                    if response.status == 200:
+                        return result
+                    result = await response.json(content_type="application/json") if not isinstance(result, dict) else result
+                except UnicodeDecodeError:
+                    raise WrongReturnType("Wrong return type is given")
 
-                result = await response.json()
                 if response.status == 400:
-                    raise ParameterError(result["message"])
+                    raise ParameterError(result.get("message"))
 
                 if response.status == 401:
-                    raise Unauthorised(result["message"])
+                    raise Unauthorised(result.get("message"))
 
                 if response.status == 500:
-                    raise ApiError(result["message"])
+                    raise ApiError(result.get("message"))
 
                 raise HttpException(response.status, result)
