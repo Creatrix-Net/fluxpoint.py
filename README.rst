@@ -2,7 +2,7 @@ fluxpoint.py
 ================
 
 .. image:: https://discord.com/api/guilds/920190307595874304/embed.png
-   :target: https://discord.gg/r3sSKJJ
+   :target: https://discord.gg/vfXHwS3nmQ
    :alt: Discord server invite
 .. image:: https://img.shields.io/pypi/v/fluxpoint.py.svg
    :target: https://pypi.python.org/pypi/fluxpoint.py
@@ -50,7 +50,7 @@ To install the development version, do the following:
 
 .. code:: sh
 
-    $ git clone https://github.com/The-4th-Hokage/fluxpoint.py
+    $ git clone https://github.com/Dhruvacube/fluxpoint.py
     $ cd fluxpoint.py
     $ python3 -m pip install -U .[speed]
 
@@ -75,7 +75,7 @@ Quick Example
       print(asyncio.run(a.azurlane()))
 
 
-You can find more examples in the `examples directory <https://github.com/The-4th-Hokage/fluxpoint.py/tree/master/examples>`_.
+You can find more examples in the `examples directory <https://github.com/Dhruvacube/fluxpoint.py/tree/master/examples>`_.
 
 Links
 ------
