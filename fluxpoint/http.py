@@ -16,7 +16,7 @@ class BaseHTTP:
     :param api_token: The fluxpoint api token https://fluxpoint.dev/api/access
     :type api_token: str
     """
-    __slots__ = ["api_token"]
+    __slots__ = ["api_token", "__user_agent"]
 
     def __init__(self, api_token: str) -> None:
         self.api_token: str = api_token
@@ -47,8 +47,7 @@ class BaseHTTP:
         """
         if json is None:
             json = {}
-        __base_url: str = _base_url if _base_url.endswith(
-            '/') else _base_url.strip() + '/'
+        __base_url: str = _base_url if _base_url.endswith('/') else _base_url.strip() + '/' # type: ignore
         headers = {} if not headers else headers
 
         headers["Authorization"] = self.api_token
@@ -71,12 +70,12 @@ class BaseHTTP:
                     raise WrongReturnType("Wrong return type is given")
 
                 if response.status == 400:
-                    raise ParameterError(result.get("message"))
+                    raise ParameterError(result.get("message")) # type: ignore
 
                 if response.status == 401:
-                    raise Unauthorised(result.get("message"))
+                    raise Unauthorised(result.get("message")) # type: ignore
 
                 if response.status == 500:
-                    raise ApiError(result.get("message"))
+                    raise ApiError(result.get("message")) # type: ignore
 
-                raise HttpException(response.status, result)
+                raise HttpException(response.status, result) # type: ignore

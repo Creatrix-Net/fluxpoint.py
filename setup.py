@@ -8,8 +8,10 @@ with open('requirements.txt') as f:
 
 version = ''
 with open(f'{pakage_name}/__init__.py') as f:
-    version = re.search(
-        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
+    version_match = re.search(
+        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE)
+    if version_match:
+        version = version_match.group(1)
 
 if not version:
     raise RuntimeError('version is not set')

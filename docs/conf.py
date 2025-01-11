@@ -18,8 +18,8 @@ import sys
 # -- Project information -----------------------------------------------------
 
 project = 'fluxpoint.py'
-copyright = '2022, Dhruva Shaw'
-author = 'Dhruvacube'
+copyright = '2025, Creative Net'
+author = 'Creatrix-Net'
 
 # The full version, including alpha/beta/rc tags
 version = ''
@@ -62,7 +62,7 @@ autodoc_typehints = 'description'
 # napoleon_attr_annotations = False
 
 extlinks = {
-    'issue': ('https://github.com/Dhruvacube/fluxpoint.py/issues/%s', 'GH-'),
+    'issue': ('https://github.com/Creatrix-Net/fluxpoint.py/issues/%s', 'GH-'),
 }
 
 # Links used for cross-referencing stuff in other documentation
