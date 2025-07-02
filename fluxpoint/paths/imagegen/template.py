@@ -3,14 +3,9 @@ import io
 
 from yarl import URL
 
-from ..enums import RequestTypes
-from ..http import BaseHTTP
-
-
-class InvalidFeature(Exception):
-    """
-    The feature chosen is not valid
-    """
+from fluxpoint.vars import RequestTypes
+from fluxpoint.http import BaseHTTP
+from fluxpoint.errors import InvalidFeature
 
 
 class WelcomeConfig:
@@ -89,24 +84,29 @@ class WelcomeConfig:
         return return_dict
 
 
-class Welcome(BaseHTTP):
-    """Welcome Images Api endpoints documented in https://bluedocs.page/fluxpoint-api/welcome"""
+class Template(BaseHTTP):
+    """Template Images Api endpoints documented in https://docs.fluxpoint.dev/api/endpoints/image-gen/templates"""
 
-    async def welcome_icons(self) -> Union[List[str], Tuple[str]]:
+    def __init__(self, *args, **kwargs) -> None:
+        self.__listbaseurl = '/list'
+        self.__baseurl = '/gen'
+        super().__init__(*args, **kwargs)
+
+    async def __welcome_icons(self) -> Union[List[str], Tuple[str]]:
         """Get a list of all the welcome icons
 
         :return: A list of all the welcome icons
         :rtype: Union[list, tuple]
         """
-        return (await self.request(RequestTypes.GET, 'list/icons')).get('list')  # skipcq: TYP-005
+        return (await self.request(RequestTypes.GET, f'{self.__listbaseurl}/icons')).get('list')  # skipcq: TYP-005
 
-    async def welcome_banner(self) -> Union[List[str], Tuple[str]]:
+    async def __welcome_banner(self) -> Union[List[str], Tuple[str]]:
         """Get a list of all the welcome banners
 
         :return: A list of all the welcome banners
         :rtype: Union[list, tuple]
         """
-        return (await self.request(RequestTypes.GET, 'list/banners')).get('list')  # skipcq: TYP-005
+        return (await self.request(RequestTypes.GET, f'{self.__listbaseurl}/banners')).get('list')  # skipcq: TYP-005
 
     async def welcome(self, config: WelcomeConfig) -> Union[Dict, io.IOBase]:
         """Create a welcome image
@@ -120,13 +120,12 @@ class Welcome(BaseHTTP):
         """
         if (
             config.banner is not None
-            and config.banner.lower() not in list(map(lambda x: x.lower(), await self.welcome_banner()))
+            and config.banner.lower() not in list(map(lambda x: x.lower(), await self.__welcome_banner()))
         ):
             raise InvalidFeature(f'Banner {config.banner} not found')
         if (
             config.icon is not None
-            and config.icon.lower() not in list(map(lambda x: x.lower(), await self.welcome_icons()))
+            and config.icon.lower() not in list(map(lambda x: x.lower(), await self.__welcome_icons()))
         ):
             raise InvalidFeature(f'Icon {config.icon} not found')
-        # skipcq: TYP-005
-        return await self.request(RequestTypes.POST, '/gen/welcome', json=config.to_dict(), return_bytes=True, return_json=False)
+        return await self.request(RequestTypes.POST, f'{self.__baseurl}/welcome', json=config.to_dict(), return_bytes=True, return_json=False)

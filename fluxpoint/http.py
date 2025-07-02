@@ -6,7 +6,7 @@ import aiohttp
 from yarl import URL
 
 from . import __version__
-from .enums import RequestTypes
+from .vars import RequestTypes
 from .errors import *
 
 
@@ -20,7 +20,7 @@ class BaseHTTP:
 
     def __init__(self, api_token: str) -> None:
         self.api_token: str = api_token
-        self.__user_agent: str = f"fluxpoint/{__version__}"
+        self.__user_agent: str = f"fluxpointpy/{__version__}"
 
     async def request(
         self,

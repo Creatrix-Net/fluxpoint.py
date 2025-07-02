@@ -50,3 +50,16 @@ class ParameterError(HttpException):
 
     def __init__(self, message: str) -> None:
         super().__init__(400, message)
+
+class InvalidCategory(Exception):
+    """
+    Category chosen to pass is invalid
+    """
+    def __init__(self, message: str = None) -> None:
+        self.message: str = "Category chosen to pass in parameters is invalid"
+        super().__init__(message)
+
+class InvalidFeature(Exception):
+    """
+    The feature chosen is not valid
+    """

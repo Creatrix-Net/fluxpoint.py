@@ -1,7 +1,7 @@
 from typing import Literal, Optional, Dict, Union, List
 import io
-from ..http import BaseHTTP
-from ..enums import RequestTypes
+from fluxpoint.http import BaseHTTP
+from fluxpoint.vars import RequestTypes
 
 
 class Square:
@@ -331,23 +331,19 @@ class Text:
         return return_dict
 
 
-class ImageGenerator(BaseHTTP):
-    """Custome image generator Api endpoints documented in https://bluedocs.page/fluxpoint-api/imagegen"""
+class CustomImage(BaseHTTP):
+    """Custom image generator Api endpoints documented in https://docs.fluxpoint.dev/api/endpoints/image-gen/custom-image"""
+
+    def __ini__(self, *args, **kwargs) -> None:
+        self.__baseurl = '/gen'
+        super().__init__(*args, **kwargs)
 
     def __str__(self):
-        return "<Image Generator>"
+        return "<Custom Image Generator>"
 
-    async def test(self) -> Union[Dict, io.IOBase]:
-        """Test the image generator
-
-        :returns: The response from the server
-        :rtype: Union[Dict, io.IOBase]
-        """
-        return await self.request(RequestTypes.GET, '/test/image', return_bytes=True, return_json=False)  # skipcq: TYP-005
-
-    async def customimage(
+    async def custom(
         self,
-        type: Literal["bitmap", "image"],
+        imgtype: Literal["bitmap", "image"],
         width: int,
         height: int,
         color: str,
@@ -357,8 +353,8 @@ class ImageGenerator(BaseHTTP):
     ) -> Union[Dict, io.IOBase]:
         """Get the created image gen image.
 
-        :param type: Image type
-        :type type: Literal[bitmap, image]
+        :param imgtype: Image type
+        :type imgtype: Literal[bitmap, image]
         :param width: Overall width of the image
         :type width: int
         :param height: Overall height of the image
@@ -379,7 +375,7 @@ class ImageGenerator(BaseHTTP):
             texts = []
         json_data = {
             "Base": {
-                "type": type,
+                "type": imgtype,
                 "width": width,
                 "height": height,
                 "color": color
@@ -387,5 +383,4 @@ class ImageGenerator(BaseHTTP):
             "Images": list(map(lambda x: x.to_dict(), images)),
             "Texts": list(map(lambda x: x.to_dict(), texts))
         }
-        # skipcq : TYP-005
-        return await self.request(RequestTypes.POST, '/gen/custom', return_bytes=True, return_json=False, json=json_data)
+        return await self.request(RequestTypes.POST, f'{self.__baseurl}/custom', return_bytes=True, return_json=False, json=json_data)
