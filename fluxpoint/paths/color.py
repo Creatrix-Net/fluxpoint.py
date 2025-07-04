@@ -1,7 +1,5 @@
-from urllib.parse import urlencode
 from typing import Optional, AsyncGenerator
 
-from fluxpoint import ParameterError
 from fluxpoint.vars import RequestTypes
 from fluxpoint.http import BaseHTTP
 

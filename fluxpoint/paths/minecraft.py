@@ -1,3 +1,4 @@
+from fluxpoint.errors import paramEnumValidCheck
 from fluxpoint.http import BaseHTTP
 from fluxpoint.vars import RequestTypes, SkinType
 from typing import Optional
@@ -77,4 +78,5 @@ class Minecraft(BaseHTTP):
         :param skintype: The skin type of the player
         :type skintype: :class:`OrderedDict`
         """
-        return OrderedDict(await self.request(RequestTypes.GET,f'{self.__baseurl}/skin',params={"player":player,"type":skintype}))
+        paramEnumValidCheck(skintype, SkinType)
+        return OrderedDict(await self.request(RequestTypes.GET,f'{self.__baseurl}/skin',params={"player":player,"type":skintype.value}))

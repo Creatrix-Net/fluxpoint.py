@@ -23,7 +23,7 @@ Key Features
 Installing
 ----------
 
-**Python 3.8 or higher is required**
+**Python 3.9 or higher is required**
 
 To install the library, you can just run the following command:
 
@@ -50,7 +50,7 @@ To install the development version, do the following:
 
 .. code:: sh
 
-    $ git clone https://github.com/Dhruvacube/fluxpoint.py
+    $ git clone https://github.com/Creatrix-Net/fluxpoint.py
     $ cd fluxpoint.py
     $ python3 -m pip install -U .[speed]
 
@@ -65,23 +65,23 @@ Quick Example
       import sys
 
       # setting up the fluxpoint client handler
-      a = FluxpointClient(api_token="get api token from https://fluxpoint.dev/api/access")
+      a = FluxpointClient(api_token="get api token from fluxpoint.dev/api/access")
 
       # setting up the windows loop policy according to the operating system
       if sys.platform.startswith('win32') or sys.platform.startswith('cygwin'):
           asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-      # getting the image url of AZURLANE image
-      print(asyncio.run(a.azurlane()))
+      # getting the random dadjoke
+      print(asyncio.run(a.dadjoke()))
 
 
-You can find more examples in the `examples directory <https://github.com/Dhruvacube/fluxpoint.py/tree/master/examples>`_.
+You can find more examples in the `examples directory <https://github.com/Creatrix-Net/fluxpoint.py/tree/master/examples>`_.
 
 Links
 ------
 
-- `Documentation <https://fluxpointpy.readthedocs.io/en/latest/>`_
+- `Documentation <https://fluxpointpy.dhruvashaw.in/en/latest/>`_
 - `Official Support Discord Server <https://discord.gg/vfXHwS3nmQ>`_
 - `Official Fluxpoint server <https://discord.gg/fluxpoint>`_
 - `Get Fluxpoint api access <https://fluxpoint.dev/api/access>`_
-- `Official Fluxpoint api docs <https://bluedocs.page/fluxpoint-api>`_
+- `Official Fluxpoint api docs <https://docs.fluxpoint.dev/api>`_

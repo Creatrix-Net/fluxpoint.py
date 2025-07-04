@@ -347,8 +347,7 @@ class CustomImage(BaseHTTP):
         width: int,
         height: int,
         color: str,
-        images: Optional[List[Union[ImageUrl,
-                                    Square, Triangle, Circle]]] = None,
+        images: Optional[List[Union[ImageUrl,Square, Triangle, Circle]]] = None,
         texts: Optional[List[Text]] = None
     ) -> Union[Dict, io.IOBase]:
         """Get the created image gen image.

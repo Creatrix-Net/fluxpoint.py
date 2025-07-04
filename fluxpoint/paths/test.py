@@ -2,9 +2,10 @@ from typing import Union, Dict
 import io
 
 from enum import Enum
-from fluxpoint.vars import RequestTypes, TestImageType
+
+from fluxpoint.errors import paramEnumValidCheck
+from fluxpoint.vars import RequestTypes, ImageType
 from fluxpoint.http import BaseHTTP
-from urllib.parse import urlparse
 
 class Tests(BaseHTTP):
     """Test endpoint documented in https://docs.fluxpoint.dev/api/endpoints/test"""
@@ -25,12 +26,13 @@ class Tests(BaseHTTP):
         """
         return Enum('Color', (await self.request(RequestTypes.GET, '',)))
 
-    async def imagen(self, imgtype: TestImageType = TestImageType.JPEG) -> Union[Dict, io.IOBase]:
+    async def imagen(self, imgtype: ImageType = ImageType.JPG) -> Union[Dict, io.IOBase]:
         """Test the image generator
 
         :returns: The response from the server
         :rtype: Union[Dict, io.IOBase]
         """
+        paramEnumValidCheck(imgtype, ImageType)
         return await self.request(
             RequestTypes.GET,
             f'{self.__baseurl}/image',

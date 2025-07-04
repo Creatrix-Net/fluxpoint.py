@@ -32,12 +32,12 @@ class RequestTypes(enum.IntEnum):
     POST = 5
 
 @enum.unique
-class TestImageType(enum.StrEnum):
+class ImageType(enum.StrEnum):
     """Different test image type for the http request"""
 
     PNG = "png"
     WEBP = "webp"
-    JPEG = "jpeg"
+    JPG = "jpg"
 
 @enum.unique
 class SFWImage(enum.StrEnum):

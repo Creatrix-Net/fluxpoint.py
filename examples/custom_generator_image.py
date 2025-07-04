@@ -4,15 +4,15 @@ import sys
 from fluxpoint import FluxpointClient, ImageUrl, Square, Text
 
 # setting up the fluxpoint client handler
-a = FluxpointClient(api_token="get api token from https://fluxpoint.dev/api/access")
+a = FluxpointClient(api_token="get api token from fluxpoint.dev/api/access")
 
 # setting up the windows loop policy according to the operating system
 if sys.platform.startswith(('win32', 'cygwin')):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 # getting the image bytes data
-data = asyncio.run(a.customimage(
-    type="bitmap",
+data = asyncio.run(a.custom(
+    imgtype="bitmap",
     width=2000,
     height=2000,
     color="#7289da",

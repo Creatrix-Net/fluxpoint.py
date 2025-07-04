@@ -4,7 +4,7 @@ import sys
 from fluxpoint import FluxpointClient, WelcomeConfig
 
 # setting up the fluxpoint client handler
-a = FluxpointClient(api_token="get api token from https://fluxpoint.dev/api/access")
+a = FluxpointClient(api_token="get api token from fluxpoint.dev/api/access")
 
 # setting up the windows loop policy according to the operating system
 if sys.platform.startswith(('win32', 'cygwin')):

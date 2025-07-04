@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fluxpoint.vars import RequestTypes
 from fluxpoint.http import BaseHTTP
 

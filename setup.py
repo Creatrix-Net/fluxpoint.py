@@ -82,7 +82,7 @@ setup(
     install_requires=requirements,
     extras_require=extras_require,
     package_data={"fluxpoint": ["py.typed"]},
-    python_requires='>=3.8',
+    python_requires='>=3.9',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',

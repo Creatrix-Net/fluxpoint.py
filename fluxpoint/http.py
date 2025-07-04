@@ -24,17 +24,17 @@ class BaseHTTP:
 
     async def request(
         self,
-        method: RequestTypes,
-        endpoint: str,
-        params: Optional[dict] = None,
-        json: Optional[dict] = None,
-        data: Optional[str] = None,
-        headers: Optional[dict] = None,
-        _base_url: Optional[Union[str, URL]] = 'https://api.fluxpoint.dev/',
-        retry: bool = True,
-        return_json: bool = True,
-        return_bytes: bool = False,
-        retry_times: int = 1
+            method: RequestTypes,
+            endpoint: str,
+            params: Optional[dict] = None,
+            json: Optional[dict] = None,
+            data: Optional[str, aiohttp.FormData] = None,
+            headers: Optional[dict] = None,
+            _base_url: Optional[Union[str, URL]] = 'https://api.fluxpoint.dev/',
+            retry: bool = True,
+            return_json: bool = True,
+            return_bytes: bool = False,
+            retry_times: int = 1
     ) -> Union[aiohttp.ClientResponse, dict, io.IOBase]:
         """Makes an API request
 
@@ -62,7 +62,7 @@ class BaseHTTP:
                     return await self.request(method, endpoint, json, headers, retry=retry_times <= 10, retry_times=retry_times+1)
 
                 try:
-                    result = await response.json(content_type="application/json") if return_json else (await response.read()if return_bytes else response)
+                    result = await response.json(content_type="application/json") if return_json else (await response.read() if return_bytes else response)
                     if response.status == 200:
                         return result
                     result = await response.json(content_type="application/json") if not isinstance(result, dict) else result

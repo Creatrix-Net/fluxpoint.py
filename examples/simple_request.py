@@ -1,14 +1,13 @@
+from fluxpoint import FluxpointClient
 import asyncio
 import sys
 
-from fluxpoint import FluxpointClient
-
 # setting up the fluxpoint client handler
-a = FluxpointClient(api_token="get api token from https://fluxpoint.dev/api/access")
+a = FluxpointClient(api_token="get api token from fluxpoint.dev/api/access")
 
 # setting up the windows loop policy according to the operating system
-if sys.platform.startswith(('win32', 'cygwin')):
+if sys.platform.startswith('win32') or sys.platform.startswith('cygwin'):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-# getting the image url of AZURLANE image
-print(asyncio.run(a.azurlane()))
+# getting the random dadjoke
+print(asyncio.run(a.dadjoke()))

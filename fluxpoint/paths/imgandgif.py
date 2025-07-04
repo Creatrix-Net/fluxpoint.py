@@ -67,8 +67,9 @@ class ImgAndGif(BaseHTTP):
         :return: Url of the image/gif
         :rtype: Union[:class:`yarl.URL` , :class:`str`]
         """
-        if isinstance(category, NSFWImage) or isinstance(category, NSFWGif):
+        if not isinstance(category, NSFWImage) or not isinstance(category, NSFWGif):
             raise Exception("Category must be a instance of NSFWImage or NSFWGif")
+
         if gif:
             if category not in NSFWGif:
                 raise InvalidCategory()
