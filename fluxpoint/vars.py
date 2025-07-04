@@ -1,5 +1,25 @@
 import enum
 
+datetimeformat = [
+    "MM/dd/yyyy",
+    "dddd, dd MMMM yyyy",
+    "dddd, dd MMMM yyyy",
+    "dddd, dd MMMM yyyy HH:mm:ss",
+    "MM/dd/yyyy HH:mm",
+    "MM/dd/yyyy hh:mm tt",
+    "MM/dd/yyyy HH:mm:ss",
+    "MMMM dd",
+    "yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK",
+    "ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’",
+    "yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss",
+    "HH:mm",
+    "hh:mm tt",
+    "H:mm",
+    "h:mm tt",
+    "HH:mm:ss",
+    "yyyy MMMM"
+]
+
 @enum.unique
 class RequestTypes(enum.IntEnum):
     """Different requests types for the http request"""
@@ -119,7 +139,7 @@ class NSFWGif(enum.StrEnum):
     anal = "anal"
     ass = "ass"
     bdsm = "bdsm"
-    blowjob = "blowjo"
+    blowjob = "blowjob"
     boobjob = "boobjob"
     boobs = "boobs"
     cum = "cum"
@@ -136,3 +156,11 @@ class NSFWGif(enum.StrEnum):
     tentacle = "tentacle"
     toys = "toys"
     yuri = "yuri"
+
+@enum.unique
+class SkinType(enum.StrEnum):
+    HEAD = "head"
+    CUBE = "cube"
+    BODY = "body"
+    FULL = "full"
+    ALL = "all"

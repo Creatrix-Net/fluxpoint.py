@@ -4,6 +4,7 @@ import io
 from enum import Enum
 from fluxpoint.vars import RequestTypes, TestImageType
 from fluxpoint.http import BaseHTTP
+from urllib.parse import urlparse
 
 class Tests(BaseHTTP):
     """Test endpoint documented in https://docs.fluxpoint.dev/api/endpoints/test"""
@@ -24,7 +25,7 @@ class Tests(BaseHTTP):
         """
         return Enum('Color', (await self.request(RequestTypes.GET, '',)))
 
-    async def imagen(self, imgtype: TestImageType = TestImageType.jpeg) -> Union[Dict, io.IOBase]:
+    async def imagen(self, imgtype: TestImageType = TestImageType.JPEG) -> Union[Dict, io.IOBase]:
         """Test the image generator
 
         :returns: The response from the server
@@ -32,7 +33,8 @@ class Tests(BaseHTTP):
         """
         return await self.request(
             RequestTypes.GET,
-            f'{self.__baseurl}/image' if imgtype is TestImageType.jpeg else f'{self.__baseurl}/image?type={imgtype.value}',
+            f'{self.__baseurl}/image',
+            params={"type":imgtype.value},
             return_bytes=True,
             return_json=False
         )

@@ -26,7 +26,9 @@ class BaseHTTP:
         self,
         method: RequestTypes,
         endpoint: str,
+        params: Optional[dict] = None,
         json: Optional[dict] = None,
+        data: Optional[str] = None,
         headers: Optional[dict] = None,
         _base_url: Optional[Union[str, URL]] = 'https://api.fluxpoint.dev/',
         retry: bool = True,
@@ -41,12 +43,10 @@ class BaseHTTP:
         :raises ParameterError: When the 400 response is returned
         :raises Unauthorised: When the 401 response is returned
         :raises ApiError: When the 500 response is returned
-        :raises HttpException: For the other and generall http exceptions
+        :raises HttpException: For the other and general http exceptions
         :return: Bytes data for the image
         :rtype: Union[aiohttp.ClientResponse, dict, io.IOBase]
         """
-        if json is None:
-            json = {}
         __base_url: str = _base_url if _base_url.endswith('/') else _base_url.strip() + '/' # type: ignore
         headers = {} if not headers else headers
 
@@ -54,7 +54,7 @@ class BaseHTTP:
         headers["User-Agent"] = self.__user_agent
 
         async with aiohttp.ClientSession() as session:
-            async with session.request(str(method.name).upper(), f'{__base_url}{str(endpoint)}', headers=headers, json=json) as response:
+            async with session.request(str(method.name).upper(), f'{__base_url}{str(endpoint)}', headers=headers, params=params,json=json, data=data) as response:
                 if response.status == 429:
                     if not retry:
                         raise RateLimited("Too many requests, try again later")

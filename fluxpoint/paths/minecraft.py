@@ -1,6 +1,7 @@
 from fluxpoint.http import BaseHTTP
-from fluxpoint.vars import RequestTypes
+from fluxpoint.vars import RequestTypes, SkinType
 from typing import Optional
+from collections import OrderedDict
 
 class MinecraftPingData:
     """A class which gives info from the json data of Minecraft server ping
@@ -34,6 +35,9 @@ class MinecraftPingData:
 
 
 class Minecraft(BaseHTTP):
+    """
+    Minecraft API endpoints documented in https://docs.fluxpoint.dev/api/endpoints/minecraft
+    """
     def __init__(self, *args, **kwargs) -> None:
         self.__baseurl = '/mc'
         super().__init__(*args, **kwargs)
@@ -47,14 +51,30 @@ class Minecraft(BaseHTTP):
         :type port: int
         :param icon: Whether you want server icon raw data or not
         :type icon: boolean
+        :returns: Mine Server Ping Data
+        :rtype: :class:`MinecraftPingData`
         """
-        return MinecraftPingData(await self.request(RequestTypes.GET, f'{self.__baseurl}/ping?host={host}&port={port}&icon={"true" if icon else "false"}'))  # skipcq: FLK-E50
+        return MinecraftPingData(await self.request(RequestTypes.GET, f'{self.__baseurl}/ping',params={"host":host,"port":port,"icon":icon}))  # skipcq: FLK-E50
 
-    async def lookup(self, player: str) -> MinecraftPingData:
+    async def lookup(self, player: str) -> OrderedDict:
         """
         Get a Minecraft player UUID from player name
 
         :param player: The name of the player
         :type player: str
-        """
 
+        :return: The UUID of the player
+        :rtype: :class:`OrderedDict`
+        """
+        return OrderedDict((await self.request(RequestTypes.GET,f'{self.__baseurl}/uuid',params={"player":player})))
+
+    async def skin(self, player: str, skintype: SkinType = SkinType.ALL) -> OrderedDict:
+        """
+        Get the skin image of a Minecraft player account.
+
+        :param player: The name of the player
+        :type player: str
+        :param skintype: The skin type of the player
+        :type skintype: :class:`OrderedDict`
+        """
+        return OrderedDict(await self.request(RequestTypes.GET,f'{self.__baseurl}/skin',params={"player":player,"type":skintype}))

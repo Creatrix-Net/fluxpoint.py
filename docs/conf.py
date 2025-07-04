@@ -102,8 +102,8 @@ html_context = {
 
 resource_links = {
     'discord': 'https://discord.gg/vfXHwS3nmQ',
-    'issues': 'https://github.com/Dhruvacube/fluxpoint.py/issues',
-    'discussions': 'https://github.com/Dhruvacube/fluxpoint.pyy/discussions',
+    'issues': 'https://github.com/Creatrix-Net/fluxpoint.py/issues',
+    'discussions': 'https://github.com/Creatrix-Net/fluxpoint.pyy/discussions',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -140,7 +140,7 @@ man_show_urls = True
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'fluxpoint.py', 'fluxpoint.py Documentation',
-     'Dhruvacube', 'fluxpoint.py', 'One line description of project.',
+     'Dhruvacube', 'Creatrix-Net','fluxpoint.py', 'One line description of project.',
      'Miscellaneous'),
 ]
 

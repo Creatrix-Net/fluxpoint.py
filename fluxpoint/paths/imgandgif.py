@@ -49,8 +49,8 @@ class ImgAndGif(BaseHTTP):
         if gif:
             if category not in SFWGif:
                 raise InvalidCategory()
-            return (await self.request(RequestTypes.GET, f'{self.__sfwurlgif}/{category.value}'))['file']
-        return (await self.request(RequestTypes.GET, f'{self.__sfwurlimg}/{category.value}'))['file']
+            return (await self.request(RequestTypes.GET, f'{self.__sfwurlgif}/{category.value}')).get('file')
+        return (await self.request(RequestTypes.GET, f'{self.__sfwurlimg}/{category.value}')).get('file')
 
     async def nsfw(self, category: Union[NSFWImage, NSFWGif], gif: bool = False) -> Union[URL, str]:
         """
@@ -72,5 +72,5 @@ class ImgAndGif(BaseHTTP):
         if gif:
             if category not in NSFWGif:
                 raise InvalidCategory()
-            return (await self.request(RequestTypes.GET, f'{self.__nsfwurlgif}/{category.value}'))['file']
-        return (await self.request(RequestTypes.GET, f'{self.__nsfwurlimg}/{category.value}'))['file']
+            return (await self.request(RequestTypes.GET, f'{self.__nsfwurlgif}/{category.value}')).get('file')
+        return (await self.request(RequestTypes.GET, f'{self.__nsfwurlimg}/{category.value}')).get('file')

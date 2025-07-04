@@ -49,4 +49,4 @@ class Misc(BaseHTTP):
         :return: The random dadjoke
         :rtype: :class:`str`
         """
-        return (await self.request(RequestTypes.GET, 'dadjoke'))['joke']
+        return (await self.request(RequestTypes.GET, 'dadjoke')).get('joke')
