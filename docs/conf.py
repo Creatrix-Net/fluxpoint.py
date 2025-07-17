@@ -53,10 +53,14 @@ extensions = [
     'sphinxcontrib_trio',
     'details',
     'resourcelinks',
+    'googleanalytics'
 ]
 autoapi_dirs = autodoc_dirs = ['../fluxpoint']
 autodoc_member_order = 'bysource'
 autodoc_typehints = 'description'
+
+GOOGLEANALYTICS_ENABLED = True
+GOOGLEANALYTICS_ID = 'G-9FG9QN9Q4Q'
 
 # maybe consider this?
 # napoleon_attr_annotations = False
